@@ -1,4 +1,4 @@
-# E-COCSF: Enforcement-Aware Conformal Safety Filtering for Reinforcement Learning
+# Enforcement-Aware Conformal Safety Filtering for Reinforcement Learning
 
 **Adaptive safety-margin calibration from valid closed-loop evidence**
 
