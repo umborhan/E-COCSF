@@ -11,7 +11,6 @@
 
 > **Paper:** Enforcement-Aware Conformal Safety Filtering for Reinforcement Learning  
 > **Method:** Endogenous Closed-Loop Conformal Safety Filtering (E-COCSF)  
-> **Target venue:** AAAI Conference on Artificial Intelligence  
 > **Task:** Policy-agnostic runtime safety filtering for fixed RL policies  
 > **Main idea:** Update an adaptive safety margin only when the requested margin verifiably governed the executed transition.
 
