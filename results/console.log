@@ -1,0 +1,914 @@
+[eval:ecocsf] noise=0.000 ep=1/50 return=12.256 cost=134.0 goals=5 intervene=0.2170
+[eval:ecocsf] noise=0.000 ep=2/50 return=6.702 cost=25.0 goals=2 intervene=0.4900
+[eval:ecocsf] noise=0.000 ep=3/50 return=8.365 cost=175.0 goals=3 intervene=0.3120
+[eval:ecocsf] noise=0.000 ep=4/50 return=9.618 cost=124.0 goals=3 intervene=0.3780
+[eval:ecocsf] noise=0.000 ep=5/50 return=12.155 cost=101.0 goals=5 intervene=0.2030
+[eval:ecocsf] noise=0.000 ep=6/50 return=10.099 cost=189.0 goals=4 intervene=0.4520
+[eval:ecocsf] noise=0.000 ep=7/50 return=15.071 cost=171.0 goals=6 intervene=0.2150
+[eval:ecocsf] noise=0.000 ep=8/50 return=16.888 cost=58.0 goals=8 intervene=0.2320
+[eval:ecocsf] noise=0.000 ep=9/50 return=13.802 cost=78.0 goals=6 intervene=0.1680
+[eval:ecocsf] noise=0.000 ep=10/50 return=20.059 cost=165.0 goals=9 intervene=0.1300
+[eval:ecocsf] noise=0.000 ep=11/50 return=18.554 cost=243.0 goals=8 intervene=0.2310
+[eval:ecocsf] noise=0.000 ep=12/50 return=21.517 cost=82.0 goals=10 intervene=0.1030
+[eval:ecocsf] noise=0.000 ep=13/50 return=10.355 cost=335.0 goals=5 intervene=0.4070
+[eval:ecocsf] noise=0.000 ep=14/50 return=1.250 cost=140.0 goals=0 intervene=0.6570
+[eval:ecocsf] noise=0.000 ep=15/50 return=25.040 cost=117.0 goals=12 intervene=0.1620
+[eval:ecocsf] noise=0.000 ep=16/50 return=11.100 cost=132.0 goals=4 intervene=0.2700
+[eval:ecocsf] noise=0.000 ep=17/50 return=13.981 cost=225.0 goals=6 intervene=0.3860
+[eval:ecocsf] noise=0.000 ep=18/50 return=16.367 cost=107.0 goals=6 intervene=0.2310
+[eval:ecocsf] noise=0.000 ep=19/50 return=9.222 cost=153.0 goals=3 intervene=0.4130
+[eval:ecocsf] noise=0.000 ep=20/50 return=13.091 cost=86.0 goals=5 intervene=0.2730
+[eval:ecocsf] noise=0.000 ep=21/50 return=0.645 cost=6.0 goals=0 intervene=0.6070
+[eval:ecocsf] noise=0.000 ep=22/50 return=13.824 cost=74.0 goals=5 intervene=0.2850
+[eval:ecocsf] noise=0.000 ep=23/50 return=11.788 cost=200.0 goals=5 intervene=0.3240
+[eval:ecocsf] noise=0.000 ep=24/50 return=12.505 cost=68.0 goals=5 intervene=0.3210
+[eval:ecocsf] noise=0.000 ep=25/50 return=8.356 cost=301.0 goals=3 intervene=0.4450
+[eval:ecocsf] noise=0.000 ep=26/50 return=12.335 cost=144.0 goals=4 intervene=0.2220
+[eval:ecocsf] noise=0.000 ep=27/50 return=15.536 cost=151.0 goals=6 intervene=0.2300
+[eval:ecocsf] noise=0.000 ep=28/50 return=19.338 cost=82.0 goals=8 intervene=0.1840
+[eval:ecocsf] noise=0.000 ep=29/50 return=16.346 cost=161.0 goals=7 intervene=0.2970
+[eval:ecocsf] noise=0.000 ep=30/50 return=8.150 cost=133.0 goals=3 intervene=0.2530
+[eval:ecocsf] noise=0.000 ep=31/50 return=8.777 cost=54.0 goals=4 intervene=0.5300
+[eval:ecocsf] noise=0.000 ep=32/50 return=4.024 cost=133.0 goals=1 intervene=0.6570
+[eval:ecocsf] noise=0.000 ep=33/50 return=12.146 cost=128.0 goals=4 intervene=0.2810
+[eval:ecocsf] noise=0.000 ep=34/50 return=12.512 cost=149.0 goals=4 intervene=0.3040
+[eval:ecocsf] noise=0.000 ep=35/50 return=7.337 cost=147.0 goals=2 intervene=0.4970
+[eval:ecocsf] noise=0.000 ep=36/50 return=3.132 cost=141.0 goals=1 intervene=0.4040
+[eval:ecocsf] noise=0.000 ep=37/50 return=6.389 cost=140.0 goals=2 intervene=0.6050
+[eval:ecocsf] noise=0.000 ep=38/50 return=15.490 cost=221.0 goals=7 intervene=0.3160
+[eval:ecocsf] noise=0.000 ep=39/50 return=14.145 cost=169.0 goals=6 intervene=0.3940
+[eval:ecocsf] noise=0.000 ep=40/50 return=7.989 cost=153.0 goals=2 intervene=0.2890
+[eval:ecocsf] noise=0.000 ep=41/50 return=14.195 cost=96.0 goals=6 intervene=0.3120
+[eval:ecocsf] noise=0.000 ep=42/50 return=11.541 cost=27.0 goals=4 intervene=0.4230
+[eval:ecocsf] noise=0.000 ep=43/50 return=14.995 cost=119.0 goals=6 intervene=0.2550
+[eval:ecocsf] noise=0.000 ep=44/50 return=12.836 cost=46.0 goals=4 intervene=0.2170
+[eval:ecocsf] noise=0.000 ep=45/50 return=2.184 cost=209.0 goals=0 intervene=0.3270
+[eval:ecocsf] noise=0.000 ep=46/50 return=14.781 cost=149.0 goals=6 intervene=0.2440
+[eval:ecocsf] noise=0.000 ep=47/50 return=18.764 cost=182.0 goals=7 intervene=0.2470
+[eval:ecocsf] noise=0.000 ep=48/50 return=4.665 cost=111.0 goals=1 intervene=0.5360
+[eval:ecocsf] noise=0.000 ep=49/50 return=19.243 cost=129.0 goals=8 intervene=0.1750
+[eval:ecocsf] noise=0.000 ep=50/50 return=15.568 cost=149.0 goals=6 intervene=0.2790
+[eval:ecocsf] noise=0.050 ep=1/50 return=19.373 cost=144.0 goals=8 intervene=0.1570
+[eval:ecocsf] noise=0.050 ep=2/50 return=11.930 cost=211.0 goals=5 intervene=0.3560
+[eval:ecocsf] noise=0.050 ep=3/50 return=2.126 cost=87.0 goals=0 intervene=0.7070
+[eval:ecocsf] noise=0.050 ep=4/50 return=7.521 cost=164.0 goals=3 intervene=0.4550
+[eval:ecocsf] noise=0.050 ep=5/50 return=13.920 cost=80.0 goals=6 intervene=0.2390
+[eval:ecocsf] noise=0.050 ep=6/50 return=7.119 cost=214.0 goals=2 intervene=0.4460
+[eval:ecocsf] noise=0.050 ep=7/50 return=9.086 cost=204.0 goals=3 intervene=0.3290
+[eval:ecocsf] noise=0.050 ep=8/50 return=17.748 cost=0.0 goals=7 intervene=0.1610
+[eval:ecocsf] noise=0.050 ep=9/50 return=16.433 cost=216.0 goals=7 intervene=0.3100
+[eval:ecocsf] noise=0.050 ep=10/50 return=13.794 cost=88.0 goals=7 intervene=0.2040
+[eval:ecocsf] noise=0.050 ep=11/50 return=21.423 cost=223.0 goals=10 intervene=0.2470
+[eval:ecocsf] noise=0.050 ep=12/50 return=5.619 cost=109.0 goals=3 intervene=0.3130
+[eval:ecocsf] noise=0.050 ep=13/50 return=14.268 cost=278.0 goals=5 intervene=0.1720
+[eval:ecocsf] noise=0.050 ep=14/50 return=3.843 cost=253.0 goals=1 intervene=0.7890
+[eval:ecocsf] noise=0.050 ep=15/50 return=17.539 cost=154.0 goals=7 intervene=0.2430
+[eval:ecocsf] noise=0.050 ep=16/50 return=14.636 cost=105.0 goals=5 intervene=0.3150
+[eval:ecocsf] noise=0.050 ep=17/50 return=17.479 cost=141.0 goals=6 intervene=0.3320
+[eval:ecocsf] noise=0.050 ep=18/50 return=14.152 cost=126.0 goals=4 intervene=0.2910
+[eval:ecocsf] noise=0.050 ep=19/50 return=4.412 cost=0.0 goals=2 intervene=0.7540
+[eval:ecocsf] noise=0.050 ep=20/50 return=11.753 cost=47.0 goals=5 intervene=0.2270
+[eval:ecocsf] noise=0.050 ep=21/50 return=2.100 cost=115.0 goals=0 intervene=0.7320
+[eval:ecocsf] noise=0.050 ep=22/50 return=12.288 cost=33.0 goals=5 intervene=0.1830
+[eval:ecocsf] noise=0.050 ep=23/50 return=18.831 cost=124.0 goals=8 intervene=0.1220
+[eval:ecocsf] noise=0.050 ep=24/50 return=10.845 cost=171.0 goals=4 intervene=0.4300
+[eval:ecocsf] noise=0.050 ep=25/50 return=8.833 cost=294.0 goals=3 intervene=0.4020
+[eval:ecocsf] noise=0.050 ep=26/50 return=14.163 cost=316.0 goals=5 intervene=0.2120
+[eval:ecocsf] noise=0.050 ep=27/50 return=17.565 cost=89.0 goals=7 intervene=0.2330
+[eval:ecocsf] noise=0.050 ep=28/50 return=12.569 cost=206.0 goals=5 intervene=0.3230
+[eval:ecocsf] noise=0.050 ep=29/50 return=14.261 cost=117.0 goals=5 intervene=0.2450
+[eval:ecocsf] noise=0.050 ep=30/50 return=12.411 cost=261.0 goals=5 intervene=0.3810
+[eval:ecocsf] noise=0.050 ep=31/50 return=14.364 cost=119.0 goals=6 intervene=0.3940
+[eval:ecocsf] noise=0.050 ep=32/50 return=5.720 cost=142.0 goals=2 intervene=0.2590
+[eval:ecocsf] noise=0.050 ep=33/50 return=10.804 cost=122.0 goals=4 intervene=0.3810
+[eval:ecocsf] noise=0.050 ep=34/50 return=8.908 cost=358.0 goals=3 intervene=0.3580
+[eval:ecocsf] noise=0.050 ep=35/50 return=4.729 cost=52.0 goals=1 intervene=0.4950
+[eval:ecocsf] noise=0.050 ep=36/50 return=6.602 cost=252.0 goals=2 intervene=0.3090
+[eval:ecocsf] noise=0.050 ep=37/50 return=5.825 cost=121.0 goals=2 intervene=0.5390
+[eval:ecocsf] noise=0.050 ep=38/50 return=15.855 cost=85.0 goals=7 intervene=0.2420
+[eval:ecocsf] noise=0.050 ep=39/50 return=9.024 cost=265.0 goals=3 intervene=0.4210
+[eval:ecocsf] noise=0.050 ep=40/50 return=9.463 cost=166.0 goals=3 intervene=0.4140
+[eval:ecocsf] noise=0.050 ep=41/50 return=0.891 cost=38.0 goals=0 intervene=0.7770
+[eval:ecocsf] noise=0.050 ep=42/50 return=7.621 cost=31.0 goals=3 intervene=0.3070
+[eval:ecocsf] noise=0.050 ep=43/50 return=17.056 cost=187.0 goals=8 intervene=0.2060
+[eval:ecocsf] noise=0.050 ep=44/50 return=12.736 cost=20.0 goals=4 intervene=0.2730
+[eval:ecocsf] noise=0.050 ep=45/50 return=8.593 cost=17.0 goals=3 intervene=0.2250
+[eval:ecocsf] noise=0.050 ep=46/50 return=19.964 cost=105.0 goals=8 intervene=0.1510
+[eval:ecocsf] noise=0.050 ep=47/50 return=17.431 cost=49.0 goals=8 intervene=0.1760
+[eval:ecocsf] noise=0.050 ep=48/50 return=7.418 cost=65.0 goals=2 intervene=0.2950
+[eval:ecocsf] noise=0.050 ep=49/50 return=6.899 cost=106.0 goals=3 intervene=0.3150
+[eval:ecocsf] noise=0.050 ep=50/50 return=10.985 cost=114.0 goals=4 intervene=0.2810
+[eval:ecocsf] noise=0.100 ep=1/50 return=10.939 cost=161.0 goals=4 intervene=0.3490
+[eval:ecocsf] noise=0.100 ep=2/50 return=16.497 cost=92.0 goals=8 intervene=0.2650
+[eval:ecocsf] noise=0.100 ep=3/50 return=4.295 cost=112.0 goals=1 intervene=0.6840
+[eval:ecocsf] noise=0.100 ep=4/50 return=9.055 cost=126.0 goals=3 intervene=0.4250
+[eval:ecocsf] noise=0.100 ep=5/50 return=16.693 cost=74.0 goals=6 intervene=0.1290
+[eval:ecocsf] noise=0.100 ep=6/50 return=17.786 cost=96.0 goals=7 intervene=0.2170
+[eval:ecocsf] noise=0.100 ep=7/50 return=5.309 cost=128.0 goals=2 intervene=0.5470
+[eval:ecocsf] noise=0.100 ep=8/50 return=6.263 cost=6.0 goals=3 intervene=0.6450
+[eval:ecocsf] noise=0.100 ep=9/50 return=20.727 cost=139.0 goals=9 intervene=0.2230
+[eval:ecocsf] noise=0.100 ep=10/50 return=13.117 cost=115.0 goals=5 intervene=0.2370
+[eval:ecocsf] noise=0.100 ep=11/50 return=13.513 cost=186.0 goals=6 intervene=0.2910
+[eval:ecocsf] noise=0.100 ep=12/50 return=15.239 cost=81.0 goals=6 intervene=0.1610
+[eval:ecocsf] noise=0.100 ep=13/50 return=14.099 cost=178.0 goals=6 intervene=0.2810
+[eval:ecocsf] noise=0.100 ep=14/50 return=0.647 cost=50.0 goals=0 intervene=0.7710
+[eval:ecocsf] noise=0.100 ep=15/50 return=15.146 cost=157.0 goals=6 intervene=0.2470
+[eval:ecocsf] noise=0.100 ep=16/50 return=13.397 cost=110.0 goals=5 intervene=0.3300
+[eval:ecocsf] noise=0.100 ep=17/50 return=12.916 cost=180.0 goals=4 intervene=0.2910
+[eval:ecocsf] noise=0.100 ep=18/50 return=17.927 cost=145.0 goals=7 intervene=0.2180
+[eval:ecocsf] noise=0.100 ep=19/50 return=9.990 cost=71.0 goals=5 intervene=0.1730
+[eval:ecocsf] noise=0.100 ep=20/50 return=17.212 cost=9.0 goals=7 intervene=0.1430
+[eval:ecocsf] noise=0.100 ep=21/50 return=4.589 cost=271.0 goals=1 intervene=0.6320
+[eval:ecocsf] noise=0.100 ep=22/50 return=17.937 cost=119.0 goals=7 intervene=0.1930
+[eval:ecocsf] noise=0.100 ep=23/50 return=9.528 cost=333.0 goals=4 intervene=0.4290
+[eval:ecocsf] noise=0.100 ep=24/50 return=10.394 cost=154.0 goals=4 intervene=0.4800
+[eval:ecocsf] noise=0.100 ep=25/50 return=11.263 cost=163.0 goals=4 intervene=0.3710
+[eval:ecocsf] noise=0.100 ep=26/50 return=7.640 cost=133.0 goals=2 intervene=0.4050
+[eval:ecocsf] noise=0.100 ep=27/50 return=1.623 cost=0.0 goals=0 intervene=0.4320
+[eval:ecocsf] noise=0.100 ep=28/50 return=6.018 cost=145.0 goals=3 intervene=0.3260
+[eval:ecocsf] noise=0.100 ep=29/50 return=9.137 cost=232.0 goals=4 intervene=0.3080
+[eval:ecocsf] noise=0.100 ep=30/50 return=11.264 cost=34.0 goals=4 intervene=0.4240
+[eval:ecocsf] noise=0.100 ep=31/50 return=13.001 cost=46.0 goals=4 intervene=0.1570
+[eval:ecocsf] noise=0.100 ep=32/50 return=6.778 cost=225.0 goals=2 intervene=0.4800
+[eval:ecocsf] noise=0.100 ep=33/50 return=12.647 cost=145.0 goals=5 intervene=0.3370
+[eval:ecocsf] noise=0.100 ep=34/50 return=4.581 cost=193.0 goals=1 intervene=0.5440
+[eval:ecocsf] noise=0.100 ep=35/50 return=8.666 cost=83.0 goals=3 intervene=0.4120
+[eval:ecocsf] noise=0.100 ep=36/50 return=3.298 cost=102.0 goals=1 intervene=0.4560
+[eval:ecocsf] noise=0.100 ep=37/50 return=0.456 cost=0.0 goals=0 intervene=0.8860
+[eval:ecocsf] noise=0.100 ep=38/50 return=11.024 cost=116.0 goals=4 intervene=0.2600
+[eval:ecocsf] noise=0.100 ep=39/50 return=5.521 cost=202.0 goals=1 intervene=0.5600
+[eval:ecocsf] noise=0.100 ep=40/50 return=12.435 cost=212.0 goals=4 intervene=0.3120
+[eval:ecocsf] noise=0.100 ep=41/50 return=0.965 cost=40.0 goals=0 intervene=0.6550
+[eval:ecocsf] noise=0.100 ep=42/50 return=8.009 cost=19.0 goals=3 intervene=0.4430
+[eval:ecocsf] noise=0.100 ep=43/50 return=12.301 cost=254.0 goals=5 intervene=0.3940
+[eval:ecocsf] noise=0.100 ep=44/50 return=3.588 cost=32.0 goals=1 intervene=0.4880
+[eval:ecocsf] noise=0.100 ep=45/50 return=1.374 cost=13.0 goals=0 intervene=0.4450
+[eval:ecocsf] noise=0.100 ep=46/50 return=12.289 cost=151.0 goals=5 intervene=0.3010
+[eval:ecocsf] noise=0.100 ep=47/50 return=10.623 cost=46.0 goals=3 intervene=0.4490
+[eval:ecocsf] noise=0.100 ep=48/50 return=3.547 cost=83.0 goals=1 intervene=0.7480
+[eval:ecocsf] noise=0.100 ep=49/50 return=4.071 cost=163.0 goals=2 intervene=0.3800
+[eval:ecocsf] noise=0.100 ep=50/50 return=9.310 cost=78.0 goals=4 intervene=0.4010
+[eval:ecocsf] noise=0.200 ep=1/50 return=14.506 cost=125.0 goals=7 intervene=0.2090
+[eval:ecocsf] noise=0.200 ep=2/50 return=6.484 cost=126.0 goals=2 intervene=0.3840
+[eval:ecocsf] noise=0.200 ep=3/50 return=2.199 cost=68.0 goals=0 intervene=0.7150
+[eval:ecocsf] noise=0.200 ep=4/50 return=13.829 cost=145.0 goals=5 intervene=0.2050
+[eval:ecocsf] noise=0.200 ep=5/50 return=12.710 cost=136.0 goals=6 intervene=0.2860
+[eval:ecocsf] noise=0.200 ep=6/50 return=0.595 cost=59.0 goals=0 intervene=0.6300
+[eval:ecocsf] noise=0.200 ep=7/50 return=12.823 cost=365.0 goals=5 intervene=0.3610
+[eval:ecocsf] noise=0.200 ep=8/50 return=22.212 cost=3.0 goals=10 intervene=0.0970
+[eval:ecocsf] noise=0.200 ep=9/50 return=13.017 cost=19.0 goals=6 intervene=0.1180
+[eval:ecocsf] noise=0.200 ep=10/50 return=22.100 cost=79.0 goals=10 intervene=0.1630
+[eval:ecocsf] noise=0.200 ep=11/50 return=14.609 cost=216.0 goals=6 intervene=0.2830
+[eval:ecocsf] noise=0.200 ep=12/50 return=16.250 cost=117.0 goals=7 intervene=0.1470
+[eval:ecocsf] noise=0.200 ep=13/50 return=16.155 cost=109.0 goals=7 intervene=0.1770
+[eval:ecocsf] noise=0.200 ep=14/50 return=0.644 cost=100.0 goals=0 intervene=0.7760
+[eval:ecocsf] noise=0.200 ep=15/50 return=18.300 cost=98.0 goals=9 intervene=0.1410
+[eval:ecocsf] noise=0.200 ep=16/50 return=5.620 cost=27.0 goals=2 intervene=0.4090
+[eval:ecocsf] noise=0.200 ep=17/50 return=6.873 cost=266.0 goals=2 intervene=0.4580
+[eval:ecocsf] noise=0.200 ep=18/50 return=13.479 cost=112.0 goals=5 intervene=0.2150
+[eval:ecocsf] noise=0.200 ep=19/50 return=15.519 cost=9.0 goals=8 intervene=0.2940
+[eval:ecocsf] noise=0.200 ep=20/50 return=14.991 cost=59.0 goals=6 intervene=0.2000
+[eval:ecocsf] noise=0.200 ep=21/50 return=10.542 cost=214.0 goals=3 intervene=0.2460
+[eval:ecocsf] noise=0.200 ep=22/50 return=15.911 cost=122.0 goals=6 intervene=0.2150
+[eval:ecocsf] noise=0.200 ep=23/50 return=16.447 cost=132.0 goals=7 intervene=0.1750
+[eval:ecocsf] noise=0.200 ep=24/50 return=5.604 cost=69.0 goals=3 intervene=0.5340
+[eval:ecocsf] noise=0.200 ep=25/50 return=12.446 cost=127.0 goals=4 intervene=0.2780
+[eval:ecocsf] noise=0.200 ep=26/50 return=7.421 cost=182.0 goals=2 intervene=0.3980
+[eval:ecocsf] noise=0.200 ep=27/50 return=7.170 cost=94.0 goals=2 intervene=0.5980
+[eval:ecocsf] noise=0.200 ep=28/50 return=16.392 cost=173.0 goals=7 intervene=0.2240
+[eval:ecocsf] noise=0.200 ep=29/50 return=10.992 cost=210.0 goals=4 intervene=0.1580
+[eval:ecocsf] noise=0.200 ep=30/50 return=3.680 cost=50.0 goals=1 intervene=0.6640
+[eval:ecocsf] noise=0.200 ep=31/50 return=14.775 cost=66.0 goals=6 intervene=0.3270
+[eval:ecocsf] noise=0.200 ep=32/50 return=9.883 cost=138.0 goals=3 intervene=0.3240
+[eval:ecocsf] noise=0.200 ep=33/50 return=11.965 cost=199.0 goals=4 intervene=0.3350
+[eval:ecocsf] noise=0.200 ep=34/50 return=6.363 cost=112.0 goals=2 intervene=0.5420
+[eval:ecocsf] noise=0.200 ep=35/50 return=3.736 cost=33.0 goals=1 intervene=0.4380
+[eval:ecocsf] noise=0.200 ep=36/50 return=2.411 cost=43.0 goals=1 intervene=0.6350
+[eval:ecocsf] noise=0.200 ep=37/50 return=10.429 cost=82.0 goals=3 intervene=0.3670
+[eval:ecocsf] noise=0.200 ep=38/50 return=16.874 cost=82.0 goals=7 intervene=0.2840
+[eval:ecocsf] noise=0.200 ep=39/50 return=11.791 cost=122.0 goals=4 intervene=0.3360
+[eval:ecocsf] noise=0.200 ep=40/50 return=15.595 cost=66.0 goals=5 intervene=0.1730
+[eval:ecocsf] noise=0.200 ep=41/50 return=18.264 cost=78.0 goals=7 intervene=0.1770
+[eval:ecocsf] noise=0.200 ep=42/50 return=10.473 cost=67.0 goals=4 intervene=0.3830
+[eval:ecocsf] noise=0.200 ep=43/50 return=15.841 cost=188.0 goals=7 intervene=0.2960
+[eval:ecocsf] noise=0.200 ep=44/50 return=13.874 cost=182.0 goals=7 intervene=0.3030
+[eval:ecocsf] noise=0.200 ep=45/50 return=9.654 cost=13.0 goals=3 intervene=0.4230
+[eval:ecocsf] noise=0.200 ep=46/50 return=15.171 cost=318.0 goals=5 intervene=0.2560
+[eval:ecocsf] noise=0.200 ep=47/50 return=9.302 cost=144.0 goals=3 intervene=0.4190
+[eval:ecocsf] noise=0.200 ep=48/50 return=10.671 cost=58.0 goals=4 intervene=0.3350
+[eval:ecocsf] noise=0.200 ep=49/50 return=7.877 cost=19.0 goals=4 intervene=0.5850
+[eval:ecocsf] noise=0.200 ep=50/50 return=15.720 cost=57.0 goals=7 intervene=0.1770
+[
+  {
+    "method": "ecocsf",
+    "action_noise": 0.0,
+    "episodes": 50,
+    "total_steps": 50000,
+    "target_epsilon": 0.1,
+    "ramp_tau": 0.001,
+    "pooled_valid_steps": 41339,
+    "pooled_valid_soft_loss": 0.10713882154981652,
+    "pooled_valid_hard_exceedance_rate": 0.0915600280606691,
+    "pooled_calibration_valid_rate": 0.82678,
+    "pooled_invalid_rate": 0.17322000000000004,
+    "pooled_strict_valid_steps": 36870,
+    "pooled_strict_valid_soft_loss": 0.09069824753429061,
+    "pooled_strict_valid_hard_exceedance_rate": 0.07653919175481422,
+    "pooled_capped_valid_steps": 4469,
+    "pooled_capped_valid_soft_loss": 0.24277631628072788,
+    "pooled_capped_valid_hard_exceedance_rate": 0.21548444842246586,
+    "pooled_verified_capped_rate": 0.08938,
+    "pooled_cap_attempt_rate": 0.0894,
+    "pooled_operational_support_rate": 0.18444,
+    "return_mean": 12.100551993131507,
+    "return_std": 5.296848393676948,
+    "return_ci95_low": 10.652608622276071,
+    "return_ci95_high": 13.54110413356011,
+    "cost_mean": 136.24,
+    "cost_std": 64.21124575674149,
+    "cost_ci95_low": 118.81949999999999,
+    "cost_ci95_high": 154.30149999999998,
+    "safe_utility_mean": -124.13944800686849,
+    "safe_utility_std": 64.315967408137,
+    "safe_utility_ci95_low": -141.97883433896612,
+    "safe_utility_ci95_high": -107.07415201052943,
+    "cost_rate_mean": 0.13624,
+    "cost_rate_std": 0.0642112457567415,
+    "cost_rate_ci95_low": 0.11862,
+    "cost_rate_ci95_high": 0.15428099999999997,
+    "zero_cost_mean": 0.0,
+    "zero_cost_std": 0.0,
+    "zero_cost_ci95_low": 0.0,
+    "zero_cost_ci95_high": 0.0,
+    "goals_mean": 4.74,
+    "goals_std": 2.6014909382968865,
+    "goals_ci95_low": 4.04,
+    "goals_ci95_high": 5.460499999999993,
+    "goals_per_1000_steps_mean": 4.74,
+    "goals_per_1000_steps_std": 2.6014909382968865,
+    "goals_per_1000_steps_ci95_low": 4.02,
+    "goals_per_1000_steps_ci95_high": 5.46,
+    "any_goal_mean": 0.94,
+    "any_goal_std": 0.23989793748209526,
+    "any_goal_ci95_low": 0.86,
+    "any_goal_ci95_high": 1.0,
+    "barrier_violation_rate_mean": 0.14834,
+    "barrier_violation_rate_std": 0.07171218266694399,
+    "barrier_violation_rate_ci95_low": 0.12846,
+    "barrier_violation_rate_ci95_high": 0.1685205,
+    "geometric_violation_rate_mean": 0.07936000000000001,
+    "geometric_violation_rate_std": 0.05194296715374175,
+    "geometric_violation_rate_ci95_low": 0.0655995,
+    "geometric_violation_rate_ci95_high": 0.09391999999999999,
+    "exceedance_rate_mean": 0.09225313664079816,
+    "exceedance_rate_std": 0.016606253146548802,
+    "exceedance_rate_ci95_low": 0.0877429993097557,
+    "exceedance_rate_ci95_high": 0.09689973725102807,
+    "valid_hard_exceedance_rate_mean": 0.09225313664079816,
+    "valid_hard_exceedance_rate_std": 0.016606253146548802,
+    "valid_hard_exceedance_rate_ci95_low": 0.08767765507600787,
+    "valid_hard_exceedance_rate_ci95_high": 0.096745118918058,
+    "valid_soft_loss_mean": 0.10777433180473255,
+    "valid_soft_loss_std": 0.013882270448853807,
+    "valid_soft_loss_ci95_low": 0.1040882126368763,
+    "valid_soft_loss_ci95_high": 0.11171070423720673,
+    "valid_soft_loss_minus_epsilon_mean": 0.007774331804732529,
+    "valid_soft_loss_minus_epsilon_std": 0.013882270448853807,
+    "valid_soft_loss_minus_epsilon_ci95_low": 0.004065951937496025,
+    "valid_soft_loss_minus_epsilon_ci95_high": 0.011691122213345213,
+    "strict_valid_hard_exceedance_rate_mean": 0.07696781728528142,
+    "strict_valid_hard_exceedance_rate_std": 0.01957963528106007,
+    "strict_valid_hard_exceedance_rate_ci95_low": 0.07148875765345919,
+    "strict_valid_hard_exceedance_rate_ci95_high": 0.0822298087487296,
+    "strict_valid_soft_loss_mean": 0.09073672865166113,
+    "strict_valid_soft_loss_std": 0.017288482351752964,
+    "strict_valid_soft_loss_ci95_low": 0.08591187690046098,
+    "strict_valid_soft_loss_ci95_high": 0.09539697381586155,
+    "capped_valid_hard_exceedance_rate_mean": 0.22644539950519554,
+    "capped_valid_hard_exceedance_rate_std": 0.11109457232486146,
+    "capped_valid_hard_exceedance_rate_ci95_low": 0.19608296708854409,
+    "capped_valid_hard_exceedance_rate_ci95_high": 0.2562414857652984,
+    "capped_valid_soft_loss_mean": 0.2499197881558873,
+    "capped_valid_soft_loss_std": 0.11165138132291726,
+    "capped_valid_soft_loss_ci95_low": 0.21978234558412305,
+    "capped_valid_soft_loss_ci95_high": 0.28073890507083077,
+    "requested_exceedance_rate_all_steps_mean": 0.064,
+    "requested_exceedance_rate_all_steps_std": 0.014764823060233401,
+    "requested_exceedance_rate_all_steps_ci95_low": 0.05984,
+    "requested_exceedance_rate_all_steps_ci95_high": 0.06802000000000001,
+    "calibration_valid_rate_mean": 0.82678,
+    "calibration_valid_rate_std": 0.08585875681867855,
+    "calibration_valid_rate_ci95_low": 0.802779,
+    "calibration_valid_rate_ci95_high": 0.8495005,
+    "invalid_rate_mean": 0.17322000000000004,
+    "invalid_rate_std": 0.08585875681867855,
+    "invalid_rate_ci95_low": 0.1509,
+    "invalid_rate_ci95_high": 0.19692,
+    "intervention_rate_mean": 0.3277999999999999,
+    "intervention_rate_std": 0.1361057512017919,
+    "intervention_rate_ci95_low": 0.2921794999999999,
+    "intervention_rate_ci95_high": 0.36704050000000005,
+    "intervention_mean_mean": 0.3680853625254318,
+    "intervention_mean_std": 0.1509991606579547,
+    "intervention_mean_ci95_low": 0.3275651459700221,
+    "intervention_mean_ci95_high": 0.4102493705915823,
+    "certified_fraction_mean": 0.18444000000000002,
+    "certified_fraction_std": 0.11404692195830306,
+    "certified_fraction_ci95_low": 0.1542795,
+    "certified_fraction_ci95_high": 0.21592,
+    "operational_support_rate_mean": 0.18444000000000002,
+    "operational_support_rate_std": 0.11404692195830306,
+    "operational_support_rate_ci95_low": 0.15360000000000004,
+    "operational_support_rate_ci95_high": 0.21674049999999997,
+    "infeasible_rate_mean": 0.17321999999999999,
+    "infeasible_rate_std": 0.08585875681867854,
+    "infeasible_rate_ci95_low": 0.15045950000000002,
+    "infeasible_rate_ci95_high": 0.19816,
+    "cap_attempt_rate_mean": 0.0894,
+    "cap_attempt_rate_std": 0.050019996001599204,
+    "cap_attempt_rate_ci95_low": 0.07665999999999999,
+    "cap_attempt_rate_ci95_high": 0.10378050000000001,
+    "margin_capped_rate_mean": 0.08937999999999999,
+    "margin_capped_rate_std": 0.04996647447467724,
+    "margin_capped_rate_ci95_low": 0.07662000000000001,
+    "margin_capped_rate_ci95_high": 0.10378049999999998,
+    "cost_event_rate_mean": 0.13624,
+    "cost_event_rate_std": 0.0642112457567415,
+    "cost_event_rate_ci95_low": 0.1192,
+    "cost_event_rate_ci95_high": 0.15474,
+    "direct_contact_event_rate_mean": 0.054799999999999995,
+    "direct_contact_event_rate_std": 0.03493492492609419,
+    "direct_contact_event_rate_ci95_low": 0.045620000000000015,
+    "direct_contact_event_rate_ci95_high": 0.0646205,
+    "barrier_contact_disagreement_rate_mean": 0.05388000000000001,
+    "barrier_contact_disagreement_rate_std": 0.024872441925692355,
+    "barrier_contact_disagreement_rate_ci95_low": 0.04738,
+    "barrier_contact_disagreement_rate_ci95_high": 0.06092049999999999,
+    "barrier_false_positive_rate_mean": 0.039220000000000005,
+    "barrier_false_positive_rate_std": 0.02331530985145571,
+    "barrier_false_positive_rate_ci95_low": 0.03292,
+    "barrier_false_positive_rate_ci95_high": 0.0458005,
+    "barrier_false_negative_rate_mean": 0.014660000000000001,
+    "barrier_false_negative_rate_std": 0.012156479753612885,
+    "barrier_false_negative_rate_ci95_low": 0.011420000000000001,
+    "barrier_false_negative_rate_ci95_high": 0.01806,
+    "actuator_error_mean_mean": 0.0,
+    "actuator_error_mean_std": 0.0,
+    "actuator_error_mean_ci95_low": 0.0,
+    "actuator_error_mean_ci95_high": 0.0,
+    "q_final_mean": 0.01722546548927043,
+    "q_final_std": 0.008337856383277008,
+    "q_final_ci95_low": 0.014905456649594553,
+    "q_final_ci95_high": 0.019567617422878592,
+    "total_cost_hazards_mean": 31.34,
+    "total_cost_hazards_std": 32.71684955642825,
+    "total_cost_hazards_ci95_low": 22.9,
+    "total_cost_hazards_ci95_high": 40.86,
+    "total_cost_sum_mean": 136.24,
+    "total_cost_sum_std": 64.21124575674149,
+    "total_cost_sum_ci95_low": 118.96,
+    "total_cost_sum_ci95_high": 154.24099999999999,
+    "total_cost_vases_contact_mean": 23.66,
+    "total_cost_vases_contact_std": 14.955184753803886,
+    "total_cost_vases_contact_ci95_low": 19.66,
+    "total_cost_vases_contact_ci95_high": 27.940499999999993,
+    "total_cost_vases_velocity_mean": 106.0,
+    "total_cost_vases_velocity_std": 61.76155597067133,
+    "total_cost_vases_velocity_ci95_low": 89.59949999999999,
+    "total_cost_vases_velocity_ci95_high": 123.20049999999999
+  },
+  {
+    "method": "ecocsf",
+    "action_noise": 0.05,
+    "episodes": 50,
+    "total_steps": 50000,
+    "target_epsilon": 0.1,
+    "ramp_tau": 0.001,
+    "pooled_valid_steps": 42067,
+    "pooled_valid_soft_loss": 0.10419645260412302,
+    "pooled_valid_hard_exceedance_rate": 0.08890579313951553,
+    "pooled_calibration_valid_rate": 0.84134,
+    "pooled_invalid_rate": 0.15866000000000002,
+    "pooled_strict_valid_steps": 37985,
+    "pooled_strict_valid_soft_loss": 0.09062426807523005,
+    "pooled_strict_valid_hard_exceedance_rate": 0.07631959984204291,
+    "pooled_capped_valid_steps": 4082,
+    "pooled_capped_valid_soft_loss": 0.23049224616855193,
+    "pooled_capped_valid_hard_exceedance_rate": 0.2060264576188143,
+    "pooled_verified_capped_rate": 0.08164,
+    "pooled_cap_attempt_rate": 0.08164,
+    "pooled_operational_support_rate": 0.22704,
+    "return_mean": 11.378603058689936,
+    "return_std": 5.151885227728929,
+    "return_ci95_low": 9.948480622481595,
+    "return_ci95_high": 12.761216276511638,
+    "cost_mean": 139.68,
+    "cost_std": 86.73003857854978,
+    "cost_ci95_low": 116.3795,
+    "cost_ci95_high": 164.04049999999998,
+    "safe_utility_mean": -128.30139694131006,
+    "safe_utility_std": 86.62967471800691,
+    "safe_utility_ci95_low": -152.3614187713201,
+    "safe_utility_ci95_high": -104.73404339222046,
+    "cost_rate_mean": 0.13968,
+    "cost_rate_std": 0.08673003857854979,
+    "cost_rate_ci95_low": 0.11619950000000001,
+    "cost_rate_ci95_high": 0.16352049999999999,
+    "zero_cost_mean": 0.04,
+    "zero_cost_std": 0.19794866372215741,
+    "zero_cost_ci95_low": 0.0,
+    "zero_cost_ci95_high": 0.1,
+    "goals_mean": 4.38,
+    "goals_std": 2.406538711807598,
+    "goals_ci95_low": 3.72,
+    "goals_ci95_high": 5.04,
+    "goals_per_1000_steps_mean": 4.38,
+    "goals_per_1000_steps_std": 2.406538711807598,
+    "goals_per_1000_steps_ci95_low": 3.72,
+    "goals_per_1000_steps_ci95_high": 5.06,
+    "any_goal_mean": 0.94,
+    "any_goal_std": 0.23989793748209526,
+    "any_goal_ci95_low": 0.86,
+    "any_goal_ci95_high": 1.0,
+    "barrier_violation_rate_mean": 0.147,
+    "barrier_violation_rate_std": 0.07874992711366889,
+    "barrier_violation_rate_ci95_low": 0.12546,
+    "barrier_violation_rate_ci95_high": 0.16951999999999998,
+    "geometric_violation_rate_mean": 0.08006,
+    "geometric_violation_rate_std": 0.05685549530994146,
+    "geometric_violation_rate_ci95_low": 0.06509999999999999,
+    "geometric_violation_rate_ci95_high": 0.0959005,
+    "exceedance_rate_mean": 0.08969567318150813,
+    "exceedance_rate_std": 0.01714875095161783,
+    "exceedance_rate_ci95_low": 0.0850008358101044,
+    "exceedance_rate_ci95_high": 0.09430552617657731,
+    "valid_hard_exceedance_rate_mean": 0.08969567318150813,
+    "valid_hard_exceedance_rate_std": 0.01714875095161783,
+    "valid_hard_exceedance_rate_ci95_low": 0.08494809727578645,
+    "valid_hard_exceedance_rate_ci95_high": 0.09431696738902312,
+    "valid_soft_loss_mean": 0.10483214151209239,
+    "valid_soft_loss_std": 0.01203401779790443,
+    "valid_soft_loss_ci95_low": 0.10167316472031042,
+    "valid_soft_loss_ci95_high": 0.1081872118041617,
+    "valid_soft_loss_minus_epsilon_mean": 0.0048321415120923875,
+    "valid_soft_loss_minus_epsilon_std": 0.01203401779790443,
+    "valid_soft_loss_minus_epsilon_ci95_low": 0.0016011838060376227,
+    "valid_soft_loss_minus_epsilon_ci95_high": 0.008099848361345599,
+    "strict_valid_hard_exceedance_rate_mean": 0.07672718408024452,
+    "strict_valid_hard_exceedance_rate_std": 0.016143445936733936,
+    "strict_valid_hard_exceedance_rate_ci95_low": 0.07221951572625286,
+    "strict_valid_hard_exceedance_rate_ci95_high": 0.08121227350899905,
+    "strict_valid_soft_loss_mean": 0.0906343061216333,
+    "strict_valid_soft_loss_std": 0.01199819778438125,
+    "strict_valid_soft_loss_ci95_low": 0.08732572735121664,
+    "strict_valid_soft_loss_ci95_high": 0.09387488705993015,
+    "capped_valid_hard_exceedance_rate_mean": 0.21923305404827764,
+    "capped_valid_hard_exceedance_rate_std": 0.11574543998599728,
+    "capped_valid_hard_exceedance_rate_ci95_low": 0.1880696385740066,
+    "capped_valid_hard_exceedance_rate_ci95_high": 0.2512779227245521,
+    "capped_valid_soft_loss_mean": 0.24418860551259988,
+    "capped_valid_soft_loss_std": 0.11637787999283879,
+    "capped_valid_soft_loss_ci95_low": 0.212179781249065,
+    "capped_valid_soft_loss_ci95_high": 0.2762619078121858,
+    "requested_exceedance_rate_all_steps_mean": 0.06626,
+    "requested_exceedance_rate_all_steps_std": 0.01279956950806693,
+    "requested_exceedance_rate_all_steps_ci95_low": 0.06276000000000001,
+    "requested_exceedance_rate_all_steps_ci95_high": 0.06976049999999999,
+    "calibration_valid_rate_mean": 0.84134,
+    "calibration_valid_rate_std": 0.07431664465965472,
+    "calibration_valid_rate_ci95_low": 0.8206800000000001,
+    "calibration_valid_rate_ci95_high": 0.8611610000000001,
+    "invalid_rate_mean": 0.15866,
+    "invalid_rate_std": 0.07431664465965472,
+    "invalid_rate_ci95_low": 0.13866,
+    "invalid_rate_ci95_high": 0.17934049999999999,
+    "intervention_rate_mean": 0.34256,
+    "intervention_rate_std": 0.16665914867397677,
+    "intervention_rate_ci95_low": 0.2987365,
+    "intervention_rate_ci95_high": 0.39036100000000007,
+    "intervention_mean_mean": 0.3742080700831437,
+    "intervention_mean_std": 0.15233003146262697,
+    "intervention_mean_ci95_low": 0.33275542108828526,
+    "intervention_mean_ci95_high": 0.4174313500293886,
+    "certified_fraction_mean": 0.22703999999999996,
+    "certified_fraction_std": 0.13144580011300072,
+    "certified_fraction_ci95_low": 0.1921995,
+    "certified_fraction_ci95_high": 0.264681,
+    "operational_support_rate_mean": 0.22703999999999996,
+    "operational_support_rate_std": 0.13144580011300072,
+    "operational_support_rate_ci95_low": 0.19219999999999998,
+    "operational_support_rate_ci95_high": 0.26366249999999997,
+    "infeasible_rate_mean": 0.15866000000000002,
+    "infeasible_rate_std": 0.07431664465965472,
+    "infeasible_rate_ci95_low": 0.13832,
+    "infeasible_rate_ci95_high": 0.17930050000000003,
+    "cap_attempt_rate_mean": 0.08163999999999999,
+    "cap_attempt_rate_std": 0.03914533881601241,
+    "cap_attempt_rate_ci95_low": 0.0712995,
+    "cap_attempt_rate_ci95_high": 0.0928005,
+    "margin_capped_rate_mean": 0.08163999999999999,
+    "margin_capped_rate_std": 0.03914533881601241,
+    "margin_capped_rate_ci95_low": 0.07076,
+    "margin_capped_rate_ci95_high": 0.09262049999999997,
+    "cost_event_rate_mean": 0.13968,
+    "cost_event_rate_std": 0.08673003857854979,
+    "cost_event_rate_ci95_low": 0.11687950000000001,
+    "cost_event_rate_ci95_high": 0.1640805,
+    "direct_contact_event_rate_mean": 0.06326000000000001,
+    "direct_contact_event_rate_std": 0.041571089836617,
+    "direct_contact_event_rate_ci95_low": 0.0519795,
+    "direct_contact_event_rate_ci95_high": 0.07496049999999999,
+    "barrier_contact_disagreement_rate_mean": 0.04992,
+    "barrier_contact_disagreement_rate_std": 0.03244514365723745,
+    "barrier_contact_disagreement_rate_ci95_low": 0.04132,
+    "barrier_contact_disagreement_rate_ci95_high": 0.05909999999999999,
+    "barrier_false_positive_rate_mean": 0.033359999999999994,
+    "barrier_false_positive_rate_std": 0.02494218621254409,
+    "barrier_false_positive_rate_ci95_low": 0.026799999999999994,
+    "barrier_false_positive_rate_ci95_high": 0.040440000000000004,
+    "barrier_false_negative_rate_mean": 0.01656,
+    "barrier_false_negative_rate_std": 0.018354958180173506,
+    "barrier_false_negative_rate_ci95_low": 0.011859999999999999,
+    "barrier_false_negative_rate_ci95_high": 0.02182,
+    "actuator_error_mean_mean": 0.058245657319873606,
+    "actuator_error_mean_std": 0.002539687741745541,
+    "actuator_error_mean_ci95_low": 0.057531852805933405,
+    "actuator_error_mean_ci95_high": 0.058921543209679905,
+    "q_final_mean": 0.015646769287300744,
+    "q_final_std": 0.008133614678303506,
+    "q_final_ci95_low": 0.01340189045036567,
+    "q_final_ci95_high": 0.01792041887682495,
+    "total_cost_hazards_mean": 38.86,
+    "total_cost_hazards_std": 37.92205217042356,
+    "total_cost_hazards_ci95_low": 28.72,
+    "total_cost_hazards_ci95_high": 49.360499999999995,
+    "total_cost_sum_mean": 139.68,
+    "total_cost_sum_std": 86.73003857854978,
+    "total_cost_sum_ci95_low": 116.45949999999999,
+    "total_cost_sum_ci95_high": 163.7205,
+    "total_cost_vases_contact_mean": 24.8,
+    "total_cost_vases_contact_std": 22.333282566700348,
+    "total_cost_vases_contact_ci95_low": 18.9,
+    "total_cost_vases_contact_ci95_high": 31.22,
+    "total_cost_vases_velocity_mean": 102.44,
+    "total_cost_vases_velocity_std": 84.46111531349796,
+    "total_cost_vases_velocity_ci95_low": 79.9195,
+    "total_cost_vases_velocity_ci95_high": 126.06099999999999
+  },
+  {
+    "method": "ecocsf",
+    "action_noise": 0.1,
+    "episodes": 50,
+    "total_steps": 50000,
+    "target_epsilon": 0.1,
+    "ramp_tau": 0.001,
+    "pooled_valid_steps": 41640,
+    "pooled_valid_soft_loss": 0.10228646760682249,
+    "pooled_valid_hard_exceedance_rate": 0.08736791546589817,
+    "pooled_calibration_valid_rate": 0.8328,
+    "pooled_invalid_rate": 0.16720000000000002,
+    "pooled_strict_valid_steps": 37099,
+    "pooled_strict_valid_soft_loss": 0.08435885704490127,
+    "pooled_strict_valid_hard_exceedance_rate": 0.07081053397665706,
+    "pooled_capped_valid_steps": 4541,
+    "pooled_capped_valid_soft_loss": 0.2487512163927101,
+    "pooled_capped_valid_hard_exceedance_rate": 0.2226381854217133,
+    "pooled_verified_capped_rate": 0.09082,
+    "pooled_cap_attempt_rate": 0.09082,
+    "pooled_operational_support_rate": 0.23294,
+    "return_mean": 9.692934896252641,
+    "return_std": 5.232358734305549,
+    "return_ci95_low": 8.25026025389888,
+    "return_ci95_high": 11.106693643598115,
+    "cost_mean": 120.06,
+    "cost_std": 75.38889919907956,
+    "cost_ci95_low": 99.3785,
+    "cost_ci95_high": 140.26049999999998,
+    "safe_utility_mean": -110.36706510374735,
+    "safe_utility_std": 74.62559699607472,
+    "safe_utility_ci95_low": -130.66531172605124,
+    "safe_utility_ci95_high": -90.09521957494341,
+    "cost_rate_mean": 0.12006000000000001,
+    "cost_rate_std": 0.07538889919907958,
+    "cost_rate_ci95_low": 0.0997795,
+    "cost_rate_ci95_high": 0.1408405,
+    "zero_cost_mean": 0.04,
+    "zero_cost_std": 0.19794866372215741,
+    "zero_cost_ci95_low": 0.0,
+    "zero_cost_ci95_high": 0.1,
+    "goals_mean": 3.64,
+    "goals_std": 2.3102257156266908,
+    "goals_ci95_low": 3.02,
+    "goals_ci95_high": 4.28,
+    "goals_per_1000_steps_mean": 3.64,
+    "goals_per_1000_steps_std": 2.3102257156266908,
+    "goals_per_1000_steps_ci95_low": 3.0,
+    "goals_per_1000_steps_ci95_high": 4.28,
+    "any_goal_mean": 0.9,
+    "any_goal_std": 0.30304576336566325,
+    "any_goal_ci95_low": 0.82,
+    "any_goal_ci95_high": 0.98,
+    "barrier_violation_rate_mean": 0.15402000000000002,
+    "barrier_violation_rate_std": 0.0840999138537257,
+    "barrier_violation_rate_ci95_low": 0.131419,
+    "barrier_violation_rate_ci95_high": 0.17784,
+    "geometric_violation_rate_mean": 0.08224000000000001,
+    "geometric_violation_rate_std": 0.051381549932533056,
+    "geometric_violation_rate_ci95_low": 0.06831949999999999,
+    "geometric_violation_rate_ci95_high": 0.09606000000000002,
+    "exceedance_rate_mean": 0.08827302961950066,
+    "exceedance_rate_std": 0.014710103773451522,
+    "exceedance_rate_ci95_low": 0.08410230029242363,
+    "exceedance_rate_ci95_high": 0.09221764338689799,
+    "valid_hard_exceedance_rate_mean": 0.08827302961950066,
+    "valid_hard_exceedance_rate_std": 0.014710103773451522,
+    "valid_hard_exceedance_rate_ci95_low": 0.08418221301014048,
+    "valid_hard_exceedance_rate_ci95_high": 0.09222100070205648,
+    "valid_soft_loss_mean": 0.10302294727065008,
+    "valid_soft_loss_std": 0.012048100178804698,
+    "valid_soft_loss_ci95_low": 0.09976707679335893,
+    "valid_soft_loss_ci95_high": 0.10630851372774328,
+    "valid_soft_loss_minus_epsilon_mean": 0.0030229472706500733,
+    "valid_soft_loss_minus_epsilon_std": 0.012048100178804698,
+    "valid_soft_loss_minus_epsilon_ci95_low": -0.00026496981210783583,
+    "valid_soft_loss_minus_epsilon_ci95_high": 0.006397521524038714,
+    "strict_valid_hard_exceedance_rate_mean": 0.07073074664905665,
+    "strict_valid_hard_exceedance_rate_std": 0.016797245088421456,
+    "strict_valid_hard_exceedance_rate_ci95_low": 0.06602250538878485,
+    "strict_valid_hard_exceedance_rate_ci95_high": 0.0752244584455948,
+    "strict_valid_soft_loss_mean": 0.08388209449961638,
+    "strict_valid_soft_loss_std": 0.017456829998285767,
+    "strict_valid_soft_loss_ci95_low": 0.07886695340863253,
+    "strict_valid_soft_loss_ci95_high": 0.0884347285850418,
+    "capped_valid_hard_exceedance_rate_mean": 0.22300496067987652,
+    "capped_valid_hard_exceedance_rate_std": 0.10709869375721107,
+    "capped_valid_hard_exceedance_rate_ci95_low": 0.1944737472246845,
+    "capped_valid_hard_exceedance_rate_ci95_high": 0.253091199061244,
+    "capped_valid_soft_loss_mean": 0.2476380916335284,
+    "capped_valid_soft_loss_std": 0.10604946802769631,
+    "capped_valid_soft_loss_ci95_low": 0.2187533096016632,
+    "capped_valid_soft_loss_ci95_high": 0.27731635109980474,
+    "requested_exceedance_rate_all_steps_mean": 0.06326000000000001,
+    "requested_exceedance_rate_all_steps_std": 0.016008683867940972,
+    "requested_exceedance_rate_all_steps_ci95_low": 0.05892,
+    "requested_exceedance_rate_all_steps_ci95_high": 0.06766000000000001,
+    "calibration_valid_rate_mean": 0.8328,
+    "calibration_valid_rate_std": 0.0941600894699001,
+    "calibration_valid_rate_ci95_low": 0.8061589999999998,
+    "calibration_valid_rate_ci95_high": 0.8573005,
+    "invalid_rate_mean": 0.1672,
+    "invalid_rate_std": 0.0941600894699001,
+    "invalid_rate_ci95_low": 0.14173950000000002,
+    "invalid_rate_ci95_high": 0.19377999999999995,
+    "intervention_rate_mean": 0.3947,
+    "intervention_rate_std": 0.1733311387877821,
+    "intervention_rate_ci95_low": 0.34813900000000003,
+    "intervention_rate_ci95_high": 0.4437,
+    "intervention_mean_mean": 0.4128152104248246,
+    "intervention_mean_std": 0.14863176478985565,
+    "intervention_mean_ci95_low": 0.3722750153999193,
+    "intervention_mean_ci95_high": 0.4537255266102976,
+    "certified_fraction_mean": 0.23293999999999998,
+    "certified_fraction_std": 0.15016595037844374,
+    "certified_fraction_ci95_low": 0.19311899999999999,
+    "certified_fraction_ci95_high": 0.2755615,
+    "operational_support_rate_mean": 0.23293999999999998,
+    "operational_support_rate_std": 0.15016595037844374,
+    "operational_support_rate_ci95_low": 0.19422,
+    "operational_support_rate_ci95_high": 0.27604,
+    "infeasible_rate_mean": 0.1672,
+    "infeasible_rate_std": 0.0941600894699001,
+    "infeasible_rate_ci95_low": 0.14228,
+    "infeasible_rate_ci95_high": 0.19318149999999998,
+    "cap_attempt_rate_mean": 0.09081999999999998,
+    "cap_attempt_rate_std": 0.045916823647521074,
+    "cap_attempt_rate_ci95_low": 0.07862,
+    "cap_attempt_rate_ci95_high": 0.10404,
+    "margin_capped_rate_mean": 0.09081999999999998,
+    "margin_capped_rate_std": 0.045916823647521074,
+    "margin_capped_rate_ci95_low": 0.07896,
+    "margin_capped_rate_ci95_high": 0.10378050000000001,
+    "cost_event_rate_mean": 0.12006000000000001,
+    "cost_event_rate_std": 0.07538889919907958,
+    "cost_event_rate_ci95_low": 0.1004795,
+    "cost_event_rate_ci95_high": 0.14056000000000002,
+    "direct_contact_event_rate_mean": 0.04988000000000001,
+    "direct_contact_event_rate_std": 0.0345599981103552,
+    "direct_contact_event_rate_ci95_low": 0.0404795,
+    "direct_contact_event_rate_ci95_high": 0.059680500000000004,
+    "barrier_contact_disagreement_rate_mean": 0.053119999999999994,
+    "barrier_contact_disagreement_rate_std": 0.03374492554444297,
+    "barrier_contact_disagreement_rate_ci95_low": 0.04422000000000001,
+    "barrier_contact_disagreement_rate_ci95_high": 0.0624405,
+    "barrier_false_positive_rate_mean": 0.04274,
+    "barrier_false_positive_rate_std": 0.027862497653839365,
+    "barrier_false_positive_rate_ci95_low": 0.03532,
+    "barrier_false_positive_rate_ci95_high": 0.050640500000000005,
+    "barrier_false_negative_rate_mean": 0.01038,
+    "barrier_false_negative_rate_std": 0.010267622978696336,
+    "barrier_false_negative_rate_ci95_low": 0.00774,
+    "barrier_false_negative_rate_ci95_high": 0.0134,
+    "actuator_error_mean_mean": 0.11470449055373408,
+    "actuator_error_mean_std": 0.005584296187721196,
+    "actuator_error_mean_ci95_low": 0.11316125176307434,
+    "actuator_error_mean_ci95_high": 0.11620948535930707,
+    "q_final_mean": 0.014275805263845903,
+    "q_final_std": 0.008435608884993364,
+    "q_final_ci95_low": 0.012003942536531458,
+    "q_final_ci95_high": 0.016596713963700365,
+    "total_cost_hazards_mean": 29.68,
+    "total_cost_hazards_std": 28.575314021521642,
+    "total_cost_hazards_ci95_low": 22.16,
+    "total_cost_hazards_ci95_high": 37.54,
+    "total_cost_sum_mean": 120.06,
+    "total_cost_sum_std": 75.38889919907956,
+    "total_cost_sum_ci95_low": 99.31949999999999,
+    "total_cost_sum_ci95_high": 140.6205,
+    "total_cost_vases_contact_mean": 20.48,
+    "total_cost_vases_contact_std": 17.125276699686236,
+    "total_cost_vases_contact_ci95_low": 15.96,
+    "total_cost_vases_contact_ci95_high": 25.22,
+    "total_cost_vases_velocity_mean": 91.16,
+    "total_cost_vases_velocity_std": 70.04877600935053,
+    "total_cost_vases_velocity_ci95_low": 72.5395,
+    "total_cost_vases_velocity_ci95_high": 111.42099999999999
+  },
+  {
+    "method": "ecocsf",
+    "action_noise": 0.2,
+    "episodes": 50,
+    "total_steps": 50000,
+    "target_epsilon": 0.1,
+    "ramp_tau": 0.001,
+    "pooled_valid_steps": 42085,
+    "pooled_valid_soft_loss": 0.10177512423098638,
+    "pooled_valid_hard_exceedance_rate": 0.08732327432576928,
+    "pooled_calibration_valid_rate": 0.8417,
+    "pooled_invalid_rate": 0.1583,
+    "pooled_strict_valid_steps": 38075,
+    "pooled_strict_valid_soft_loss": 0.09096664436717411,
+    "pooled_strict_valid_hard_exceedance_rate": 0.07750492449113591,
+    "pooled_capped_valid_steps": 4010,
+    "pooled_capped_valid_soft_loss": 0.20440177530695947,
+    "pooled_capped_valid_hard_exceedance_rate": 0.1805486284289277,
+    "pooled_verified_capped_rate": 0.0802,
+    "pooled_cap_attempt_rate": 0.0802,
+    "pooled_operational_support_rate": 0.19902,
+    "return_mean": 11.603814347003926,
+    "return_std": 5.22731110264703,
+    "return_ci95_low": 10.183658314912368,
+    "return_ci95_high": 13.000037681115497,
+    "cost_mean": 113.56,
+    "cost_std": 76.96915894416041,
+    "cost_ci95_low": 93.01899999999999,
+    "cost_ci95_high": 134.8405,
+    "safe_utility_mean": -101.95618565299608,
+    "safe_utility_std": 76.55430481788358,
+    "safe_utility_ci95_low": -124.34162253004173,
+    "safe_utility_ci95_high": -81.51735916582672,
+    "cost_rate_mean": 0.11356000000000002,
+    "cost_rate_std": 0.07696915894416041,
+    "cost_rate_ci95_low": 0.0932395,
+    "cost_rate_ci95_high": 0.13541999999999998,
+    "zero_cost_mean": 0.0,
+    "zero_cost_std": 0.0,
+    "zero_cost_ci95_low": 0.0,
+    "zero_cost_ci95_high": 0.0,
+    "goals_mean": 4.58,
+    "goals_std": 2.5562248950915323,
+    "goals_ci95_low": 3.88,
+    "goals_ci95_high": 5.26,
+    "goals_per_1000_steps_mean": 4.58,
+    "goals_per_1000_steps_std": 2.5562248950915323,
+    "goals_per_1000_steps_ci95_low": 3.8995,
+    "goals_per_1000_steps_ci95_high": 5.3,
+    "any_goal_mean": 0.94,
+    "any_goal_std": 0.23989793748209526,
+    "any_goal_ci95_low": 0.86,
+    "any_goal_ci95_high": 1.0,
+    "barrier_violation_rate_mean": 0.1333,
+    "barrier_violation_rate_std": 0.06478134337121755,
+    "barrier_violation_rate_ci95_low": 0.1157995,
+    "barrier_violation_rate_ci95_high": 0.15124,
+    "geometric_violation_rate_mean": 0.07207999999999999,
+    "geometric_violation_rate_std": 0.04554918400218939,
+    "geometric_violation_rate_ci95_low": 0.05943999999999999,
+    "geometric_violation_rate_ci95_high": 0.08484,
+    "exceedance_rate_mean": 0.08724676197640141,
+    "exceedance_rate_std": 0.013151110034516642,
+    "exceedance_rate_ci95_low": 0.08364821602198923,
+    "exceedance_rate_ci95_high": 0.09080016888404627,
+    "valid_hard_exceedance_rate_mean": 0.08724676197640141,
+    "valid_hard_exceedance_rate_std": 0.013151110034516642,
+    "valid_hard_exceedance_rate_ci95_low": 0.08358748857422929,
+    "valid_hard_exceedance_rate_ci95_high": 0.0908294933913436,
+    "valid_soft_loss_mean": 0.1018006804446668,
+    "valid_soft_loss_std": 0.010263527630864579,
+    "valid_soft_loss_ci95_low": 0.09906228750833322,
+    "valid_soft_loss_ci95_high": 0.1046273006787844,
+    "valid_soft_loss_minus_epsilon_mean": 0.0018006804446668067,
+    "valid_soft_loss_minus_epsilon_std": 0.010263527630864579,
+    "valid_soft_loss_minus_epsilon_ci95_low": -0.0009419678583610557,
+    "valid_soft_loss_minus_epsilon_ci95_high": 0.0047027660570738115,
+    "strict_valid_hard_exceedance_rate_mean": 0.07731178336434888,
+    "strict_valid_hard_exceedance_rate_std": 0.013229791638657092,
+    "strict_valid_hard_exceedance_rate_ci95_low": 0.07370739358052456,
+    "strict_valid_hard_exceedance_rate_ci95_high": 0.08088637487654217,
+    "strict_valid_soft_loss_mean": 0.09084428304385053,
+    "strict_valid_soft_loss_std": 0.011528647519347283,
+    "strict_valid_soft_loss_ci95_low": 0.08769674389408554,
+    "strict_valid_soft_loss_ci95_high": 0.09397531460518922,
+    "capped_valid_hard_exceedance_rate_mean": 0.20081305692640541,
+    "capped_valid_hard_exceedance_rate_std": 0.12378614314991804,
+    "capped_valid_hard_exceedance_rate_ci95_low": 0.1681282535261088,
+    "capped_valid_hard_exceedance_rate_ci95_high": 0.2348446961215432,
+    "capped_valid_soft_loss_mean": 0.22512409182601226,
+    "capped_valid_soft_loss_std": 0.12663988395819836,
+    "capped_valid_soft_loss_ci95_low": 0.19110512181894623,
+    "capped_valid_soft_loss_ci95_high": 0.2611244674627283,
+    "requested_exceedance_rate_all_steps_mean": 0.06848,
+    "requested_exceedance_rate_all_steps_std": 0.013654990864522907,
+    "requested_exceedance_rate_all_steps_ci95_low": 0.0647,
+    "requested_exceedance_rate_all_steps_ci95_high": 0.07226,
+    "calibration_valid_rate_mean": 0.8417,
+    "calibration_valid_rate_std": 0.09314707483877531,
+    "calibration_valid_rate_ci95_low": 0.8151594999999999,
+    "calibration_valid_rate_ci95_high": 0.8653004999999999,
+    "invalid_rate_mean": 0.1583,
+    "invalid_rate_std": 0.09314707483877531,
+    "invalid_rate_ci95_low": 0.134919,
+    "invalid_rate_ci95_high": 0.18598149999999997,
+    "intervention_rate_mean": 0.33746000000000004,
+    "intervention_rate_std": 0.1678413013801418,
+    "intervention_rate_ci95_low": 0.292399,
+    "intervention_rate_ci95_high": 0.3847215,
+    "intervention_mean_mean": 0.3688357913764023,
+    "intervention_mean_std": 0.1637792130511031,
+    "intervention_mean_ci95_low": 0.32475348449415187,
+    "intervention_mean_ci95_high": 0.4142469082129905,
+    "certified_fraction_mean": 0.19901999999999997,
+    "certified_fraction_std": 0.12021281978564652,
+    "certified_fraction_ci95_low": 0.1671595,
+    "certified_fraction_ci95_high": 0.23306100000000002,
+    "operational_support_rate_mean": 0.19901999999999997,
+    "operational_support_rate_std": 0.12021281978564652,
+    "operational_support_rate_ci95_low": 0.16692,
+    "operational_support_rate_ci95_high": 0.23241999999999996,
+    "infeasible_rate_mean": 0.1583,
+    "infeasible_rate_std": 0.09314707483877531,
+    "infeasible_rate_ci95_low": 0.13450000000000004,
+    "infeasible_rate_ci95_high": 0.18544,
+    "cap_attempt_rate_mean": 0.0802,
+    "cap_attempt_rate_std": 0.040014283164175976,
+    "cap_attempt_rate_ci95_low": 0.0693595,
+    "cap_attempt_rate_ci95_high": 0.09152,
+    "margin_capped_rate_mean": 0.0802,
+    "margin_capped_rate_std": 0.040014283164175976,
+    "margin_capped_rate_ci95_low": 0.06948,
+    "margin_capped_rate_ci95_high": 0.0914805,
+    "cost_event_rate_mean": 0.11356000000000002,
+    "cost_event_rate_std": 0.07696915894416041,
+    "cost_event_rate_ci95_low": 0.09368,
+    "cost_event_rate_ci95_high": 0.13536249999999997,
+    "direct_contact_event_rate_mean": 0.049240000000000006,
+    "direct_contact_event_rate_std": 0.034105813736256825,
+    "direct_contact_event_rate_ci95_low": 0.03994,
+    "direct_contact_event_rate_ci95_high": 0.05882,
+    "barrier_contact_disagreement_rate_mean": 0.04771999999999999,
+    "barrier_contact_disagreement_rate_std": 0.02831747135027189,
+    "barrier_contact_disagreement_rate_ci95_low": 0.039999999999999994,
+    "barrier_contact_disagreement_rate_ci95_high": 0.055600000000000004,
+    "barrier_false_positive_rate_mean": 0.03528,
+    "barrier_false_positive_rate_std": 0.023722064128793942,
+    "barrier_false_positive_rate_ci95_low": 0.02904,
+    "barrier_false_positive_rate_ci95_high": 0.0420005,
+    "barrier_false_negative_rate_mean": 0.01244,
+    "barrier_false_negative_rate_std": 0.015802557271737086,
+    "barrier_false_negative_rate_ci95_low": 0.008440000000000001,
+    "barrier_false_negative_rate_ci95_high": 0.0169805,
+    "actuator_error_mean_mean": 0.22387977837575715,
+    "actuator_error_mean_std": 0.009777721791188696,
+    "actuator_error_mean_ci95_low": 0.2211252009238437,
+    "actuator_error_mean_ci95_high": 0.22648022529603656,
+    "q_final_mean": 0.014295260348825755,
+    "q_final_std": 0.007257373088982996,
+    "q_final_ci95_low": 0.012346969308691565,
+    "q_final_ci95_high": 0.01627295885273281,
+    "total_cost_hazards_mean": 30.16,
+    "total_cost_hazards_std": 29.395515415291023,
+    "total_cost_hazards_ci95_low": 22.259500000000003,
+    "total_cost_hazards_ci95_high": 38.5205,
+    "total_cost_sum_mean": 113.56,
+    "total_cost_sum_std": 76.96915894416041,
+    "total_cost_sum_ci95_low": 92.5175,
+    "total_cost_sum_ci95_high": 135.78,
+    "total_cost_vases_contact_mean": 19.5,
+    "total_cost_vases_contact_std": 19.355165950711758,
+    "total_cost_vases_contact_ci95_low": 14.48,
+    "total_cost_vases_contact_ci95_high": 25.0,
+    "total_cost_vases_velocity_mean": 84.2,
+    "total_cost_vases_velocity_std": 76.26671780598637,
+    "total_cost_vases_velocity_ci95_low": 64.1795,
+    "total_cost_vases_velocity_ci95_high": 106.06
+  }
+]
