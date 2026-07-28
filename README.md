@@ -1,570 +1,342 @@
-# Enforcement-Aware Conformal Safety Filtering for Reinforcement Learning
+# Conformal Safety Filtering under Enforcement Mismatch
 
-**Adaptive safety-margin calibration from valid closed-loop evidence**
+**E-COCSF: an enforcement-aware, policy-agnostic runtime safety layer for fixed reinforcement-learning policies**
 
-[![Python](https://img.shields.io/badge/Python-3.10-blue)](https://www.python.org/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.x-ee4c2c)](https://pytorch.org/)
-[![CARLA](https://img.shields.io/badge/CARLA-0.9.15-0b8f87)](https://carla.org/)
-[![Safety Gymnasium](https://img.shields.io/badge/Safety%20Gymnasium-SafetyPointGoal2--v0-purple)](https://github.com/PKU-Alignment/safety-gymnasium)
-[![Task](https://img.shields.io/badge/Task-Safe%20Reinforcement%20Learning-orange)](#overview)
-[![License](https://img.shields.io/badge/License-Add%20Before%20Release-lightgrey)](#license)
+> **Paper title:** *Conformal Safety Filtering under Enforcement Mismatch*  
+> **Method:** E-COCSF  
+> **Evaluation:** controlled endogenous process, CARLA 0.9.15, and Safety-Gymnasium `SafetyPointGoal2-v0`
 
-> **Paper:** Enforcement-Aware Conformal Safety Filtering for Reinforcement Learning  
-> **Method:** Endogenous Closed-Loop Conformal Safety Filtering (E-COCSF)  
-> **Task:** Policy-agnostic runtime safety filtering for fixed RL policies  
-> **Main idea:** Update an adaptive safety margin only when the requested margin verifiably governed the executed transition.
+E-COCSF adapts a safety margin only from transitions for which the enforced margin is verifiably attributable to the final command. When the requested margin exceeds modeled control authority, the filter estimates available headroom, conservatively caps the request, re-solves the projection, and verifies the final command. Restored, fallback, solver-failed, or downstream-modified transitions remain visible in deployment statistics but are excluded from calibration updates.
+
+The implementation wraps a fixed SAC, PPO, or other black-box policy. It does not require retraining the policy to change the safety-filter logic.
 
 ---
 
-## Overview
-
-Adaptive safety margins are part of the closed loop. A requested margin changes the feasible action set, the safety filter changes the executed action, and the resulting next state produces the residual used for later calibration. In deployed systems, infeasibility handling, restoration logic, actuator effects, or downstream guards can prevent the requested margin from governing the transition. Updating from such a transition attributes its residual to the wrong control semantics.
-
-**E-COCSF** addresses this enforcement mismatch. It:
-
-- perturbs the requested margin with bounded probing for local identifiability;
-- verifies whether the requested margin was actually enforced;
-- freezes calibration on invalid, restored, or constraint-changing transitions;
-- uses only past data to screen whether the visited margin--risk response appears locally self-correcting; and
-- reports invalid and audit-unsupported operation separately instead of hiding it inside a conditional average.
-
-The safety filter wraps a fixed black-box policy. The policy can be replaced without changing the margin-calibration interface, provided that the environment supplies the state, executed action, barrier quantities, and transition diagnostics required by the filter.
-
-> **Scope of the claims:** The prospective audit is an operational diagnostic, not a universal finite-sample certificate. Valid-transition exceedance is conditional on enforcement-valid transitions and is not equivalent to collision probability or an unconditional all-step safety guarantee.
-
----
-
-## System Model Figure
+## Methodology
 
 <p align="center">
-  <img src="./figures/E_COCSF.png" width="92%" alt="E-COCSF enforcement-aware closed-loop conformal safety-filter pipeline"/>
+  <img src="./figs/e-cosf.png" width="100%" alt="E-COCSF enforcement-aware conformal safety-filter methodology">
 </p>
 
-The standard adaptive loop updates its margin from every observed residual, even when the requested margin did not govern the action. E-COCSF adds three explicit mechanisms:
+The figure contrasts a conventional adaptive safety filter with the proposed enforcement-aware loop. E-COCSF separates the **requested margin** from the **verified enforced margin** and records three transition states: strict-valid, capped-valid, and invalid.
 
-1. **Executed-margin attribution:** determine whether the requested margin governed the executed action;
-2. **Validity gating:** update only from enforcement-valid transitions; and
-3. **Prospective auditing:** use past randomized margins to screen excitation, negative local response, and target crossing before the current outcome is observed.
+1. A fixed policy proposes the nominal action `u_t^0`.
+2. A bounded probe forms the requested margin `q_t^r`, and the filter attempts strict projection.
+3. If strict projection fails, a bounded search estimates model-relative safety headroom. The request may be conservatively capped and re-solved.
+4. The final command is reverified after downstream processing. Calibration proceeds only when the enforced margin is attributable (`V_t = 1`); otherwise the margin is frozen.
+5. A past-only audit uses earlier strict-valid margin/loss records to diagnose excitation, negative local sensitivity, and an in-range target crossing. Capped, invalid, and audit-unsupported operation is reported explicitly.
+
+For an enforcement-valid transition, the certificate shortfall is
+
+$$
+R_{t+1}=\left[\widehat h_t(x_t,u_t)-h_t(x_{t+1})\right]_+,
+$$
+
+and the margin update uses the bounded ramp loss relative to the verified enforced margin `q_t^e`. Invalid transitions do not evaluate the calibration loss and satisfy `q_{t+1}=q_t`.
+
+### Core design principles
+
+- **Enforced-margin attribution:** update only from the command semantics that actually generated the transition.
+- **Verified headroom capping:** recover attributable transitions when the original request is numerically unenforceable.
+- **Conditional anti-windup:** prevent high-loss capped transitions from pulling the internal margin downward.
+- **Past-only response audit:** prevent the current residual from retrospectively supporting its own transition.
+- **Failure-explicit accounting:** report capped, invalid, restored, and audit-unsupported operation rather than hiding it inside a conditional metric.
 
 ---
 
-## Why E-COCSF?
-
-General online conformal controllers already allow calibrated parameters to influence decisions, and performative risk control studies parameter-induced distribution change. The deployment gap addressed here is narrower: a safety filter can request one constraint margin while the environment receives an action produced under different semantics.
-
-E-COCSF is designed to:
-
-- prevent residuals from infeasible or restored transitions from being assigned to the requested margin;
-- expose downstream action modifications that invalidate calibration attribution;
-- detect when actuator saturation or restoration can flatten or reverse local margin--risk feedback;
-- separate supported tracking from unsupported operation in both analysis and reporting;
-- work as a runtime layer around fixed SAC, PPO, or other black-box policies; and
-- retain detailed logs for infeasibility, restoration, validity, audit support, intervention, and exceedance.
-
----
-
-## Method Overview
-
-### 1. Requested-Margin Safety Filtering
-
-At time `t`, the fixed policy proposes an action `u_pi`. E-COCSF maintains a base margin `q_t` and requests a bounded, randomly probed margin:
+## Repository structure
 
 ```text
-q_requested = clip(q_t + probe_t, 0, q_max)
-```
-
-The runtime filter finds the action nearest to the policy proposal while enforcing the requested barrier margin together with action, rate, and second-difference limits. If strict projection is infeasible, a domain-specific restoration or fallback action may be used, but that transition is not treated as if the original margin had been enforced.
-
-The realized certificate shortfall is:
-
-```text
-R_(t+1) = max(predicted_barrier(x_t, u_t) - observed_barrier(x_(t+1)), 0)
-```
-
----
-
-### 2. Enforcement-Validity Gating
-
-Let `V_t = 1` only when all requested semantics remain true for the command sent to the environment. In particular:
-
-- the strict projection was feasible;
-- restoration did not substitute different constraint semantics;
-- downstream guards did not invalidate the requested barrier condition; and
-- the final action respected the requested action, rate, and smoothness envelope.
-
-The margin recursion is:
-
-```text
-q_(t+1) = clip(
-    q_t + eta * V_t * (soft_exceedance(R_(t+1) - q_requested) - epsilon),
-    0,
-    q_max,
-)
-```
-
-Therefore, `q_(t+1) = q_t` whenever `V_t = 0`. Invalid transitions remain safety-relevant and stay in the logs; they are excluded only from calibration attribution.
-
----
-
-### 3. Prospective Self-Correction Screening
-
-Only one outcome is observed at each executed margin. E-COCSF therefore injects bounded margin probes and fits a local response using recent valid records. Before the current outcome is observed, the audit screens whether historical data provide:
-
-- sufficient margin excitation;
-- a negative local margin--risk slope; and
-- a crossing of the target exceedance level `epsilon`.
-
-If the screen fails, the step is marked audit-unsupported. This screen does not prove that the true response is self-correcting; the theoretical result is conditional on the true local response satisfying the stated dissipativity and drift assumptions.
-
----
-
-### 4. Failure-Explicit Reporting
-
-The implementation distinguishes quantities that should not be collapsed into a single coverage number:
-
-| Quantity | Meaning |
-|---|---|
-| Valid-transition exceedance | Hard exceedance rate conditioned on `V_t = 1`. |
-| Enforcement validity | Fraction of transitions for which the requested semantics were preserved. |
-| Audit support | Fraction of transitions supported by the prospective local-response screen. |
-| Strict infeasibility | Fraction for which the original strict projection was infeasible. |
-| Restoration | Fraction using an alternative feasibility or fallback mechanism. |
-| Barrier violation | Observed environmental barrier violation; distinct from conformal exceedance. |
-| Collision / task success | End-to-end system outcomes, including all guards and environment dynamics. |
-
----
-
-## Repository Layout
-
-Recommended release structure:
-
-```text
-E-COCSF/
+E-COCSF-main/
 ├── README.md
-├── LICENSE
-├── requirements.txt
-│
 ├── code/
-│   ├── ECLCS.py                       <- E-COCSF filter, audit, metrics, and wrappers
-│   └── carla_train_eval.py            <- black-box SAC training and CARLA evaluation
-│
-├── figures/
-│   └── E_COCSF.png                    <- method overview used in this README
-│
+│   ├── ECLCS.py
+│   ├── carla_train_eval.py
+│   ├── safety_gym_env.py
+│   ├── safety_gym_sac_train.py
+│   └── safety_gym_train_eval.py
+├── figs/
+│   └── e-cosf.png
 ├── graphs/
-│   ├── fig1_carla_validity_audit.png
-│   ├── fig2_seed_robustness.png
-│   ├── fig3a_safetygym_runtime_diagnostics.png
-│   ├── fig3b_cube_root_scaling.png
-│   └── fig3c_gain_tradeoff.png
-│
-├── checkpoints/
-│   ├── carla_sac_town10hd.pt
-│   ├── safetygym_sac_seed42.zip
-│   └── safetygym_ppo_seed42.zip
-│
-├── results/
-│   ├── controlled/
-│   ├── safetygym/
-│   └── carla/
-│
-└── paper/
-    └── E_COCSF_AAAI27_submission.tex
+│   ├── cube_root_scaling.png
+│   ├── gain_tradeoff.png
+│   ├── runtime_diagnostics.png
+│   ├── seed_robustness.png
+│   └── validity_audit.png
+└── results/
+    ├── benchmark_aggregate_results.csv
+    ├── benchmark_calibration_accounting.csv
+    ├── benchmark_episode_results.csv
+    ├── benchmark_paired_method_deltas.csv
+    ├── benchmark_results.json
+    ├── benchmark_steps.jsonl.gz
+    ├── console.log
+    └── manifest.json
 ```
 
-`carla_train_eval.py` imports `ECLCS` directly. Keep both Python files in the same directory or install the filter module on `PYTHONPATH`.
-
 ---
 
-## Graphs and Visual Results
+## Code tour
 
-### Runtime Validity and Audit Behavior
+### `code/ECLCS.py` — core E-COCSF implementation
 
-<p align="center">
-  <img src="./graphs/fig1_carla_validity_audit.png" width="82%" alt="CARLA enforcement validity and prospective audit behavior"/>
-</p>
+This is the main runtime-filter module. The filename is retained for compatibility with the experiment scripts; it implements the paper's E-COCSF method.
 
-CARLA is primarily used to evaluate enforcement accounting and full guarded-pipeline behavior. Its reported valid-transition exceedance is well below the target, so it is not treated as an empirical demonstration of the theorem's interior-root regime.
+- `ECLCSConfig`: calibration, projection, capping, anti-windup, audit, action-limit, and logging configuration.
+- `FilterDecision` and `TransitionUpdate`: per-step enforcement decisions and post-transition calibration records.
+- `ClosedLoopCalibrationAudit`: kernel-weighted, past-only local response audit.
+- `EndogenousClosedLoopConformalSafetyFilter`: requested-margin projection, final-command verification, headroom capping, invalid-transition freezing, residual processing, and metric accounting.
+- `AutonomousDrivingBarrierModel` and `ACCBarrierModel`: barrier interfaces for driving and controlled experiments.
+- `SelfCorrectingResidualProcess`: controlled nonstationary process used for the gain/drift study.
+- `run_scaling_study`: cube-root tracking and gain-sweep experiment.
+- `run_carla` / `run_carla_drift_sweep`: direct CARLA runtime-filter studies.
 
----
+### `code/safety_gym_env.py` — Safety-Gymnasium adapter and barrier model
 
-### Safety Gymnasium Seed Robustness
+- Converts the native observation and privileged simulator geometry into the filter state.
+- Implements `PointGoalBarrierModel`, including one-step prediction and component-wise barrier evaluation.
+- Provides `SafetyPointGoalAdapter` for environment resets, stepping, action noise, object geometry, and transition diagnostics.
+- Loads the frozen affine dynamics model used by the Safety-Gymnasium evaluation.
 
-<p align="center">
-  <img src="./graphs/fig2_seed_robustness.png" width="82%" alt="Safety Gymnasium evaluation-seed robustness"/>
-</p>
+### `code/safety_gym_sac_train.py` — nominal SAC training
 
-For the fixed SAC checkpoint, valid-transition exceedance remains below the prescribed `10%` target across the four evaluation seeds. These are evaluation seeds, not independently trained policies.
+Trains the fixed SAC policy using only the standard environment observation. Privileged geometry remains inside the runtime safety layer so the policy information set is unchanged during evaluation.
 
----
+### `code/safety_gym_train_eval.py` — PPO, dynamics identification, and benchmark runner
 
-### Controlled Tracking and Gain Scaling
+This script provides four subcommands:
 
-<p align="center">
-  <img src="./graphs/fig3b_cube_root_scaling.png" width="48%" alt="Cube-root drift scaling"/>
-  <img src="./graphs/fig3c_gain_tradeoff.png" width="48%" alt="Gain trade-off"/>
-</p>
+- `train`: train a nominal PPO policy.
+- `identify`: fit the frozen Point dynamics model from disjoint collision-free data.
+- `eval`: evaluate PPO or SAC checkpoints with E-COCSF and baseline margin mechanisms under paired noise conditions.
+- `smoke`: verify environment, geometry, barrier, and adapter integration.
 
-The controlled process isolates the tracking law. The fitted log--log slope is `0.352`, compared with the predicted `1/3`, with `R^2 = 0.999`. The gain sweep is U-shaped, with theoretical `eta* = 0.0138` and an empirical grid minimum at `0.0207`.
+It writes episode-level, aggregate, calibration-accounting, paired-delta, manifest, and optional compressed step-level outputs.
 
----
+### `code/carla_train_eval.py` — CARLA policy training and guarded evaluation
 
-## Evaluation Environments
+- Trains a compact black-box SAC driving policy.
+- Evaluates the fixed checkpoint across CARLA towns with E-COCSF.
+- Handles route planning, command scaling, traffic-light logic, predictive collision guards, final-command attribution, and cross-town result collection.
+- Keeps the nominal policy separate from the runtime filter, matching the policy-agnostic experimental design.
 
-| Environment | Policy interface | Purpose | Paper protocol |
-|---|---|---|---|
-| Controlled endogenous process | Synthetic fixed controller | Isolate drift tracking and gain scaling | 20,000 steps; three seeds per drift level. |
-| `SafetyPointGoal2-v0` | Fixed SAC and PPO checkpoints | Cross-backbone interface and actuator-noise evaluation | One checkpoint per backbone, trained for 500,000 steps with seed 42. |
-| CARLA 0.9.15 | Fixed black-box SAC policy | Cross-town deployment, traffic, guards, restoration, and validity accounting | SAC trained in Town10HD for 250,000 steps; 20 evaluation episodes per town at 20 Hz. |
+### `results/` — released evaluation artifacts
 
-Safety Gymnasium evaluation uses seeds `{7, 42, 51, 72}`, ten `1000`-step episodes per seed and noise level, and action-noise magnitudes `{0, 0.05, 0.10, 0.20}`. CARLA evaluation uses approximately `500 m` routes under random weather in held-out Town02, held-out Town05, and in-domain Town10HD.
+- `benchmark_aggregate_results.csv`: aggregate performance and safety metrics by condition.
+- `benchmark_calibration_accounting.csv`: strict-valid, capped-valid, invalid, audit-support, soft-loss, and hard-exceedance accounting.
+- `benchmark_episode_results.csv`: per-episode outcomes.
+- `benchmark_paired_method_deltas.csv`: paired differences between evaluated methods.
+- `benchmark_results.json`: complete structured benchmark summary.
+- `benchmark_steps.jsonl.gz`: compressed transition-level logs.
+- `manifest.json`: command, package versions, hardware, arguments, and source/checkpoint hashes for the released run.
 
 ---
 
 ## Installation
 
-### 1. Create a Python Environment
+The released Safety-Gymnasium manifest records Python 3.10, NumPy 1.23.5, Gymnasium 0.28.1, MuJoCo 2.3.3, Safety-Gymnasium 1.0.0, and PyTorch 2.12.1. Install a PyTorch build compatible with the local CPU/CUDA platform.
 
 ```bash
 conda create -n ecocsf python=3.10 -y
 conda activate ecocsf
+
+pip install numpy==1.23.5 gymnasium==0.28.1 mujoco==2.3.3 safety-gymnasium==1.0.0
+# Install the appropriate PyTorch wheel separately for your platform.
 ```
 
-### 2. Install Core Packages
-
-```bash
-python -m pip install --upgrade pip setuptools wheel
-pip install numpy scipy pandas matplotlib
-pip install torch
-pip install safety-gymnasium stable-baselines3
-```
-
-Use the PyTorch installation command appropriate for the local CUDA driver when GPU acceleration is required.
-
-### 3. Install CARLA 0.9.15
-
-Install the CARLA simulator and its matching Python API. Add the API package to the active environment or `PYTHONPATH`, then verify:
-
-```bash
-python -c "import carla; print('CARLA Python API is available')"
-```
-
-The CARLA server must be started separately. Example:
-
-```bash
-./CarlaUE4.sh -carla-rpc-port=2000
-```
-
-Headless or off-screen flags depend on the CARLA installation and host GPU configuration.
+CARLA experiments additionally require a running CARLA 0.9.15 server and its matching Python API.
 
 ---
 
-## Quick Start
+## Quick start
 
-### 1. Clone and Enter the Repository
+Run commands from the `code/` directory so local imports resolve correctly.
+
+### 1. Verify Safety-Gymnasium integration
 
 ```bash
-git clone https://github.com/<your-user-or-lab>/E-COCSF.git
-cd E-COCSF
+cd code
+python safety_gym_train_eval.py smoke --env_id SafetyPointGoal2-v0 --steps 100
 ```
 
-### 2. Verify the CARLA Connection
-
-With the server running on port `2000`:
+### 2. Reproduce the controlled scaling study
 
 ```bash
-python code/carla_train_eval.py \
-  --probe \
-  --carla_port 2000 \
-  --train_town Town10HD
+python ECLCS.py --scaling --out_dir ../runs/controlled_scaling
 ```
 
-The probe spawns one vehicle, applies throttle for 40 ticks, and reports whether the simulator vehicle moves.
+This experiment isolates the response assumptions and produces the cube-root drift-scaling and gain-tradeoff results.
 
-### 3. Train the Black-Box CARLA Policy
+### 3. Train fixed Safety-Gymnasium policies
 
-The policy is trained without E-COCSF so that filter evaluation remains separate from policy learning:
+PPO:
 
 ```bash
-python code/carla_train_eval.py \
-  --train \
-  --carla_port 2000 \
+python safety_gym_train_eval.py train \
+  --device auto \
+  --seed 42 \
+  --total_steps 500000 \
+  --out_dir ../runs/pointgoal2_ppo_seed42
+```
+
+SAC:
+
+```bash
+python safety_gym_sac_train.py \
+  --device auto \
+  --seed 42 \
+  --total_steps 500000 \
+  --out_dir ../runs/pointgoal2_sac_seed42
+```
+
+### 4. Identify the frozen Point dynamics model
+
+```bash
+python safety_gym_train_eval.py identify \
+  --seed 10042 \
+  --out_model ../runs/dynamics_seed10042.json
+```
+
+### 5. Evaluate E-COCSF under actuator-noise shift
+
+```bash
+python safety_gym_train_eval.py eval \
+  --checkpoint ../runs/pointgoal2_sac_seed42/sac_policy_final.pt \
+  --dynamics_model ../runs/dynamics_seed10042.json \
+  --device auto \
+  --seed 40042 \
+  --episodes 50 \
+  --max_steps 1000 \
+  --noise_levels 0,0.05,0.10,0.20 \
+  --methods ecocsf \
+  --epsilon 0.10 \
+  --eta 0.001 \
+  --q_init 0.017 \
+  --q_max 0.05 \
+  --ramp_tau 0.001 \
+  --zeta_max 0.001 \
+  --probe_probability 0.20 \
+  --barrier_alpha 0.70 \
+  --headroom_cap_delta 0.0001 \
+  --anti_windup_gamma 0.01 \
+  --restoration_grid_points 21 \
+  --residual_action commanded \
+  --out_dir ../runs/safetygym_ecocsf
+```
+
+The evaluator accepts both PPO checkpoints produced by `safety_gym_train_eval.py` and SAC checkpoints produced by `safety_gym_sac_train.py`.
+
+### 6. CARLA training and evaluation
+
+Start CARLA 0.9.15, then train a fixed SAC checkpoint and evaluate it with the runtime filter. The paper protocol trains in Town10HD and evaluates 20 guarded routes each in Town02, Town05, and Town10HD.
+
+```bash
+python carla_train_eval.py --train \
+  --carla_port 2200 \
   --train_town Town10HD \
   --total_steps 250000 \
-  --route_distance 500 \
-  --weather_mode random \
-  --no_manual_lead \
-  --out_dir runs/carla_train_town10hd
+  --out_dir ../runs/carla_sac_town10hd
 ```
-
-The final checkpoint is written to:
-
-```text
-runs/carla_train_town10hd/policy_final.pt
-```
-
-### 4. Evaluate E-COCSF in CARLA
-
-Town02 uses the paper's lighter `5V/0W` traffic condition:
 
 ```bash
-python code/carla_train_eval.py \
-  --eval \
-  --carla_port 2000 \
-  --checkpoint runs/carla_train_town10hd/policy_final.pt \
-  --eval_towns Town02 \
+python carla_train_eval.py --eval \
+  --carla_port 2200 \
+  --checkpoint ../runs/carla_sac_town10hd/policy_final.pt \
+  --eval_towns Town02,Town05,Town10HD \
   --episodes 20 \
-  --route_distance 500 \
-  --weather_mode random \
-  --num_traffic_vehicles 5 \
-  --num_walkers 0 \
-  --no_manual_lead \
-  --gain_schedule \
-  --external_blockage_recovery \
-  --out_dir runs/carla_eval_town02
+  --out_dir ../runs/carla_cross_town
 ```
 
-Town05 and Town10HD use `20V/10W`:
-
-```bash
-python code/carla_train_eval.py \
-  --eval \
-  --carla_port 2000 \
-  --checkpoint runs/carla_train_town10hd/policy_final.pt \
-  --eval_towns Town05,Town10HD \
-  --episodes 20 \
-  --route_distance 500 \
-  --weather_mode random \
-  --num_traffic_vehicles 20 \
-  --num_walkers 10 \
-  --no_manual_lead \
-  --gain_schedule \
-  --external_blockage_recovery \
-  --out_dir runs/carla_eval_dense
-```
-
-The script uses strict route-length validation and isolated cross-town map switching by default. Run each command on a dedicated CARLA server when possible.
-
-### 5. Inspect Evaluation Outputs
-
-```bash
-ls -R runs/carla_eval_town02
-ls -R runs/carla_eval_dense
-```
-
-The two result directories can be aggregated after both traffic conditions finish.
-
-> The public release should include the exact controlled-process and Safety Gymnasium launchers used for the paper. Do not infer those command-line interfaces from the CARLA runner.
+Use `python <script>.py --help` for the complete set of environment, audit, projection, guard, and ablation options.
 
 ---
 
-## Code Tour
+## Result graphs
 
-```text
-code/ECLCS.py
-├── ECLCSConfig
-│   └── margin, probing, validity, restoration, and audit configuration
-├── MachineCard
-│   └── action bounds, rate limits, jerk limits, and neutral action
-├── build_filter()
-│   └── constructs the domain-specific safety filter
-├── ECLCSAgent
-│   └── wraps an arbitrary state-to-action policy
-├── transition update
-│   ├── records the final executed action
-│   ├── checks calibration validity
-│   ├── computes the realized residual
-│   └── updates or freezes the margin
-└── audit and metrics
-    ├── prospective local-response screen
-    ├── supported/unsupported accounting
-    └── audit-log export
+### CARLA enforcement and audit diagnostics
 
-code/carla_train_eval.py
-├── reproducibility and CARLA map-switch utilities
-├── GaussianPolicy, TwinQ, ReplayBuffer, and SACAgent
-├── normalized 12-D route-aware policy observations
-├── CarLA environment and black-box policy wrapper
-├── independent SAC training
-├── E-COCSF cross-town evaluation
-│   ├── per-episode filter reset
-│   ├── post-guard executed-action update
-│   ├── feasibility and restoration diagnostics
-│   └── validity, exceedance, collision, and task metrics
-├── collision and deadlock trace export
-└── command-line entry points: --probe, --train, and --eval
-```
+<p align="center">
+  <img src="./graphs/validity_audit.png" width="78%" alt="CARLA validity, audit support, infeasibility, and restoration rates across towns">
+</p>
 
-The neural policy receives normalized observations, while E-COCSF and the barrier functions receive the raw physical state. This separation is required for meaningful barrier and residual calculations.
+Across the evaluated towns, most transitions preserve attributable final-command semantics. The graph separately exposes audit support, strict infeasibility, and restoration instead of treating all observed transitions as valid calibration evidence.
+
+### Controlled root-drift scaling and gain tradeoff
+
+<p align="center">
+  <img src="./graphs/cube_root_scaling.png" width="48%" alt="Controlled cube-root drift scaling">
+  <img src="./graphs/gain_tradeoff.png" width="48%" alt="Controlled gain tradeoff">
+</p>
+
+The fitted log-log tracking exponent is `0.352` with `R² = 0.999`, close to the predicted cube-root exponent `1/3`. The gain sweep is U-shaped: the theory-derived `eta* = 0.0138` lies near the empirical grid minimum `0.0207`.
 
 ---
 
-## Main Reported Results
+## Result tables
 
-### Safety Gymnasium: Cross-Backbone Noise Evaluation
+### CARLA cross-town evaluation
 
-Values are mean ± standard deviation across four evaluation-seed means, with ten episodes per seed and noise level.
+| Town | Return ↑ | Route success | Barrier violation ↓ | Valid-transition hard exceedance `e_V` ↓ |
+|---|---:|---:|---:|---:|
+| Town02 | 3917 ± 639 | 100% | 0.35% | 1.18% |
+| Town05 | 3815 ± 788 | 100% | 0.58% | 1.08% |
+| Town10HD | 3581 ± 848 | 100% | 1.37% | 1.58% |
+| **Overall** | **3771** | **100%** | **0.77%** | **1.28%** |
 
-| Backbone | Noise | Return ↑ | Total cost ↓ | Goals/1000 ↑ | Any-goal ↑ | Barrier violation ↓ | Valid exceedance ↓ |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| SAC | 0.00 | 15.73 ± 3.29 | 129.60 ± 23.01 | 6.10 ± 1.44 | 97.5% | 23.18 ± 7.24% | 8.34 ± 0.56% |
-| SAC | 0.05 | 16.90 ± 3.76 | 138.53 ± 29.23 | 6.75 ± 1.54 | 97.5% | 20.98 ± 4.71% | 8.30 ± 0.84% |
-| SAC | 0.10 | 16.25 ± 2.29 | 155.90 ± 19.73 | 6.10 ± 0.94 | 97.5% | 22.88 ± 5.07% | 7.61 ± 0.48% |
-| SAC | 0.20 | 16.04 ± 2.94 | 153.03 ± 29.26 | 6.18 ± 1.24 | 95.0% | 22.34 ± 4.71% | 7.79 ± 0.61% |
-| PPO | 0.00 | 14.62 ± 2.15 | 162.53 ± 16.95 | 5.63 ± 0.90 | 97.5% | 21.06 ± 3.94% | 8.30 ± 0.70% |
-| PPO | 0.05 | 15.21 ± 1.97 | 174.78 ± 36.36 | 5.70 ± 0.99 | 100% | 19.61 ± 4.49% | 8.37 ± 0.37% |
-| PPO | 0.10 | 13.17 ± 3.09 | 165.23 ± 30.13 | 4.78 ± 1.43 | 97.5% | 21.98 ± 5.84% | 8.34 ± 0.57% |
-| PPO | 0.20 | 13.20 ± 2.07 | 176.23 ± 29.06 | 4.98 ± 1.17 | 97.5% | 22.62 ± 4.80% | 8.17 ± 0.83% |
+All 60 guarded routes completed in the reported simulation. `e_V` is conditioned on transitions with an attributable numerical margin, while barrier violations are measured over all transitions; the two quantities answer different questions.
 
-These results support interface portability across two fixed policy backbones. They do not establish robustness across independently trained policies.
+### Safety-Gymnasium pooled results
 
-### CARLA: Cross-Town Guarded-Pipeline Evaluation
+Each policy contributes 200,000 transitions pooled over actuator-noise levels `0`, `0.05`, `0.10`, and `0.20`.
 
-Each town contains 20 episodes. Town02 and Town05 are held out from policy training; Town10HD is in-domain.
+| Metric | SAC | PPO |
+|---|---:|---:|
+| Valid-transition soft loss `l_V` ↓ | 0.1056 | **0.1038** |
+| Valid-transition hard exceedance `e_V` ↓ | **8.67%** | 8.88% |
+| Enforcement validity `p_V` ↑ | 73.78% | **83.57%** |
+| Strict-valid soft loss ↓ | 0.0898 | **0.0892** |
+| Capped-valid soft loss ↓ | 0.2648 | **0.2324** |
+| Barrier violation ↓ | 17.78% | **14.57%** |
+| Geometry violation ↓ | 9.19% | **7.84%** |
 
-| Town | Train/test | Traffic | Return ↑ | Success ↑ | Route completion ↑ | Collision ↓ | Barrier violation ↓ | Valid exceedance ↓ |
-|---|---|---|---:|---:|---:|---:|---:|---:|
-| Town02 | Held out | 5V/0W | 3917.41 ± 639.18 | 100% | 100% | 0% | 0.35% | 1.18% |
-| Town05 | Held out | 20V/10W | 3815.05 ± 787.60 | 100% | 100% | 0% | 0.58% | 1.08% |
-| Town10HD | In-domain | 20V/10W | 3581.00 ± 848.47 | 100% | 100% | 0% | 1.37% | 1.58% |
-| **Overall** | — | Mixed | **3771.15** | **100%** | **100%** | **0% observed** | **0.77%** | **1.28%** |
+Both fixed policy interfaces remain below 10% validity-conditioned hard exceedance. The capped-valid branch is substantially more difficult than the strict-valid branch, which motivates reporting it separately rather than averaging away limited control authority.
 
-The collision result describes the complete guarded CARLA pipeline and is not attributed to the conformal margin alone. Zero observed collisions in 60 simulated episodes is not a proof of zero collision probability.
+### Strict-failure ablation
 
----
+Fixed SAC, actuator noise `0.10`, and 50 paired 1000-step episodes:
 
-## Reproducibility Settings
+| Variant | Goals ↑ | Cost ↓ | Barrier violation ↓ | `e_V` ↓ | Valid ↑ | Invalid ↓ | Capped | Audit |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Full E-COCSF | 3.9 ± 2.3 | **111.1 ± 86.0** | **14.7 ± 9.2%** | 5.8 ± 3.5% | **81.1 ± 15.6%** | **18.9 ± 15.6%** | 10.4 ± 5.0% | 19.5 ± 18.6% |
+| No cap | 4.9 ± 3.1 | 114.9 ± 92.3 | 26.5 ± 12.0% | **1.8 ± 1.2%** | 51.0 ± 26.1% | 49.0 ± 26.1% | 0% | 13.9 ± 13.5% |
+| No recovery | **7.6 ± 2.4** | 208.5 ± 107.8 | 23.9 ± 11.0% | 2.2 ± 1.0% | 70.1 ± 12.5% | 29.9 ± 12.5% | 0% | 15.5 ± 10.0% |
 
-### Core Calibration Defaults Exposed by the CARLA Runner
-
-```text
-epsilon             = 0.10
-eta                 = 0.03
-q_init              = 0.10
-q_max               = 5.00
-zeta_max            = 0.02
-probe_probability   = 0.10
-dt                   = 0.05 s
-seed                 = 42
-```
-
-### CARLA Policy Defaults
-
-```text
-state_dim            = 12
-hidden               = 256
-batch_size           = 256
-replay_size          = 300000
-gamma                = 0.99
-tau                  = 0.005
-initial SAC alpha    = 0.10
-training warmup      = 2000 steps
-checkpoint interval  = 25000 steps
-```
-
-For paper reproduction, record the command line, git commit, CARLA server version, GPU/driver information, simulator map assets, checkpoint checksum, and every random seed. Runtime filter state is reset between evaluation episodes; aggregates therefore summarize restarted trials rather than one measured infinite-horizon run.
+Removing capping sharply reduces validity and increases barrier violation. The lower conditional exceedance of the ablations is not evidence of safer deployment: their valid subsets are smaller because more transitions become unattributable.
 
 ---
 
-## Output Files
+## Metrics and interpretation
 
-### CARLA Training Outputs
-
-| File | Description |
+| Metric | Interpretation |
 |---|---|
-| `policy_step<N>.pt` | Periodic SAC checkpoint. |
-| `policy_final.pt` | Final trained black-box policy. |
-| `train_history.json` | Episode returns, lengths, violations, task progress, termination reasons, and optimizer diagnostics. |
+| `valid_soft_loss` | Mean bounded ramp loss over enforcement-valid transitions. |
+| `valid_hard_exceedance_rate` | Fraction of valid transitions with `R_{t+1} > q_t^e`. |
+| `validity` | Fraction of all transitions with an attributable verified margin. |
+| `verified_capped_rate` | Fraction of all transitions recovered through capped re-solving and final-command verification. |
+| `invalid_rate` | Fraction excluded from calibration because margin attribution failed. |
+| `operational_support_rate` | Fraction passing the prospective past-only response audit. |
+| `barrier_violation` | Failure of the implemented predictive barrier over all transitions. |
+| `geometry_violation` | Geometry-only safety-set violation over all transitions. |
 
-### CARLA Evaluation Outputs
-
-| File | Description |
-|---|---|
-| `ecocsf_eval_results.csv` | Per-town aggregate task, safety, validity, restoration, audit, and exceedance metrics. |
-| `ecocsf_eval_episode_results.csv` | Per-episode task and filter diagnostics. |
-| `ecocsf_eval_results.json` | Structured aggregates, episode records, checkpoint, target, and audit paths. |
-| `ecocsf_eval_collision_traces.jsonl` | Pre-collision traces for episodes where a trace is available. |
-| `ecocsf_eval_deadlock_traces.jsonl` | Tail filter traces for timeout/deadlock diagnosis. |
-| `audit/` | Filter-generated audit logs for each evaluated town. |
-
-### Figure Files
-
-| File | Use |
-|---|---|
-| `figures/E_COCSF.png` | Method overview for the paper and README. |
-| `graphs/fig1_carla_validity_audit.png` | CARLA validity and audit behavior. |
-| `graphs/fig2_seed_robustness.png` | Safety Gymnasium evaluation-seed robustness. |
-| `graphs/fig3a_safetygym_runtime_diagnostics.png` | Safety Gymnasium runtime diagnostics. |
-| `graphs/fig3b_cube_root_scaling.png` | Controlled drift-scaling validation. |
-| `graphs/fig3c_gain_tradeoff.png` | Controlled gain trade-off. |
-
-Use PNG files for GitHub rendering and retain PDF versions for the paper.
+Do not interpret valid-transition exceedance as collision probability or as an unconditional all-step guarantee. The failure-explicit analysis charges unsupported operation, while the released experiments report observable validity, capping, invalidity, restoration, and audit support separately.
 
 ---
 
-## Interpreting the Results
+## Reproducibility notes
 
-E-COCSF should be interpreted as an **enforcement-aware calibration and accounting mechanism**, not as a standalone proof that every executed action is safe.
-
-- `valid exceedance < epsilon` describes only transitions whose requested margin was verifiably enforced;
-- invalid and restored transitions must be reported separately;
-- the prospective audit screens empirical local behavior but does not certify the true response with universal finite-sample validity;
-- the failure-explicit theorem is conditional on true local self-correction, bounded root drift, and controlled unsupported excursions;
-- CARLA outcomes include shared traffic, collision, road-edge, turn, and recovery guards; and
-- barrier violations, conformal exceedances, environmental costs, and collisions are different quantities.
-
-In the reported Safety Gymnasium runs, enforcement validity is approximately `61--66%` and audit support is near `12%` under actuator noise. The low support fraction makes the unconditional failure-explicit bound numerically loose in that domain; it should be presented as transparent diagnostic accounting rather than a tight deployment certificate.
-
----
-
-## Troubleshooting
-
-### `ModuleNotFoundError: No module named 'ECLCS'`
-
-Keep the files together:
-
-```text
-code/ECLCS.py
-code/carla_train_eval.py
-```
-
-Then launch the runner from the repository root:
-
-```bash
-python code/carla_train_eval.py --help
-```
-
-### `ModuleNotFoundError: No module named 'carla'`
-
-Install the Python API matching CARLA 0.9.15 and confirm that its package or egg is on `PYTHONPATH`. A version mismatch between the server and Python API can produce connection or serialization failures.
-
-### CARLA Vehicle Does Not Move
-
-Run the built-in movement probe:
-
-```bash
-python code/carla_train_eval.py --probe --carla_port 2000 --train_town Town10HD
-```
-
-If the vehicle remains stationary, check synchronous-mode ownership, physics state, server health, gear behavior, and the configured throttle floor before starting a long training run.
-
-### Cross-Town Evaluation Crashes During Map Loading
-
-The runner uses a crash-contained subprocess for map switching by default. Do not add `--no_isolated_map_switch` on packaged CARLA 0.9.15 unless the local installation has been validated for in-process map changes.
-
-### Route Rejected Before Evaluation
-
-The evaluator rejects routes shorter than `--eval_route_min_fraction` of the requested distance. Keep the default `0.98`, increase `--eval_route_retries`, or choose a route distance supported by the map. Do not silently relax this check for paper results.
-
-### High Strict-Infeasibility or Low Calibration Validity
-
-Inspect:
-
-- requested and executed actions;
-- restoration counts and slack;
-- action rate and second-difference limits;
-- downstream guard overrides;
-- initial barrier feasibility; and
-- filter audit logs.
-
-Do not reduce the reported infeasibility rate by reclassifying restored transitions as enforcement-valid.
+- The controlled process runs for 20,000 steps with three seeds per drift level.
+- CARLA uses a fixed SAC policy trained for 250,000 steps in Town10HD and evaluates 20 routes per town.
+- Safety-Gymnasium uses fixed SAC and PPO checkpoints trained for 500,000 steps with seed 42.
+- Each Safety-Gymnasium checkpoint is evaluated for 50 episodes of 1000 steps at four actuator-noise levels.
+- The released `results/manifest.json` records the exact command, arguments, package versions, hardware, checkpoint hash, and source hashes for the included run.
+- The experiments support the reported simulation behavior; they do not establish physical-deployment safety or robustness across independently trained checkpoints.
